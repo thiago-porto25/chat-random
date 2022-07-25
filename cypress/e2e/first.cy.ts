@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { value } from "../utils"
 
 describe("Testing cypress", () => {
   beforeEach(() => {
@@ -6,6 +7,6 @@ describe("Testing cypress", () => {
   })
 
   it("2+2 should equal 4", () => {
-    expect(2 + 2).to.equal(4)
+    expect(value + value).to.equal(4)
   })
 })
