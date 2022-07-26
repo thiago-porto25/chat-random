@@ -7,6 +7,7 @@
   "scripts": {
     "commit": "git-cz",
     "dev": "next dev",
+    "firebase:dev": "firebase emulators:start",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
