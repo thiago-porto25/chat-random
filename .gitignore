@@ -36,3 +36,6 @@ ui-debug.log*
 
 # typescript
 *.tsbuildinfo
+
+# cypress
+/cypress/videos/
