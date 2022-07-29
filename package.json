@@ -67,6 +67,7 @@
     "eslint-config-next": "12.2.3",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-storybook": "^0.6.1",
     "eslint-plugin-testing-library": "^5.5.1",
@@ -83,6 +84,14 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    },
+    "jsx-a11y": {
+      "components": {
+        "Avatar": "img",
+        "Button": "button",
+        "ChatInput": "input",
+        "Input": "input"
+      }
     }
   }
 }
