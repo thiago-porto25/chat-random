@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { defineConfig } from "cypress"
-
 import webpack from "@cypress/webpack-preprocessor"
 import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor"
+const { lighthouse, prepareAudit } = require("@cypress-audit/lighthouse")
 
 async function setupNodeEvents(
   on: Cypress.PluginEvents,
@@ -41,6 +42,14 @@ async function setupNodeEvents(
       },
     })
   )
+
+  on("before:browser:launch", (browser, launchOptions) => {
+    prepareAudit(launchOptions)
+  })
+
+  on("task", {
+    lighthouse: lighthouse(),
+  })
 
   return config
 }
