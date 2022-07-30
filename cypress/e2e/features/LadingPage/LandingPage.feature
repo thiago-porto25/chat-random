@@ -11,26 +11,26 @@ Feature: Landing Page
     When I click on the register button.
     Then I should access the register modal.
 
-  Scenario: As a user that has an account but is logged out, I want to access the login modal.
+  Scenario: As an user that has an account but is logged out, I want to access the login modal.
     Given I am on the landing page and i'm not logged in.
-    When I click on the register button.
+    When I click on the login button.
     Then I should access the login modal.
 
-  Scenario: As a user that has an account and is logged, I should be redirected to my home page.
-    Given I am on the landing page and I've been previously logged in in this device.
+  Scenario: As an user that has an account and is logged, I should be redirected to my home page.
+    Given I am on the landing page and I've been previously logged in in this device and browser.
     Then I should be redirected to my homepage.
 
-  Scenario: As a user that that uses accessibility tools, I should be able to navigate to the register modal.
+  Scenario: As an user that that uses accessibility tools, I should be able to navigate to the register modal.
     Given I am on the landing page and i'm not logged in.
-    When I press the tab button until I find the register button and press enter on it.
+    When I press tab on my keyboard until I find the register button and press enter on it.
     Then I should access the register modal.
   
-  Scenario: As a user that that uses accessibility tools, I should be able to navigate to the login modal.
+  Scenario: As an user that that uses accessibility tools, I should be able to navigate to the login modal.
     Given I am on the landing page and i'm not logged in.
-    When I press the tab button until I find the login button and press enter on it.
-    Then I should access the register modal.
+    When I press tab on my keyboard until I find the login button and press enter on it.
+    Then I should access the login modal.
 
-  Scenario: As a user that that uses accessibility tools, the landing page must support my needs.
+  Scenario: As an user that that uses accessibility tools, the landing page must support my needs.
     Given I am on the landing page and i'm not logged in.
     When The page passes the lighthouse accessibility audit.
     Then I should be able to browse the website without problem.
