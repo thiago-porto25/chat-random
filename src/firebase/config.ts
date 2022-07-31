@@ -2,8 +2,6 @@ import { initializeApp } from "firebase/app"
 import { getAuth, connectAuthEmulator } from "firebase/auth"
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore"
 
-import { createTestUser } from "./createTestUser"
-
 const config = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -20,9 +18,6 @@ const db = getFirestore(app)
 if (process.env.NODE_ENV === "development") {
   connectFirestoreEmulator(db, "localhost", 9098)
   connectAuthEmulator(auth, "http://localhost:9099")
-  const result = createTestUser(auth)
-
-  if (!result) throw new Error("Failed to create test user")
 }
 
 export { db, auth }
