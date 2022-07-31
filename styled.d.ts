@@ -1,4 +1,4 @@
-import {} from "styled-components"
+import "styled-components"
 import { theme } from "@thiagoporto/minim-ui/dist/theme"
 
 type ThemeType = typeof theme
