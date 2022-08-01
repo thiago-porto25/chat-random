@@ -34,7 +34,8 @@
     "semi": ["error", "never"],
     "no-console": 1,
     "react/react-in-jsx-scope": "off",
-    "jsx-quotes": ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "globals": { "React": "writable" }
 }

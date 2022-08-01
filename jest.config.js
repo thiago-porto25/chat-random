@@ -4,6 +4,7 @@ const createJestConfig = nextJest({
   dir: "./",
 })
 
+/** @type {import('@jest/types').Config.InitialOptions} */
 const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>/"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
@@ -18,4 +19,7 @@ const customJestConfig = {
   },
 }
 
-module.exports = createJestConfig(customJestConfig)
+module.exports = async () => ({
+  ...(await createJestConfig(customJestConfig)()),
+  transformIgnorePatterns: ["/node_modules/(?!(@thiagoporto)/)"],
+})
