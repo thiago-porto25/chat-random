@@ -1,8 +1,7 @@
 import Image from "next/image"
 import { Button, Logo, Spacer, Typography } from "@thiagoporto/minim-ui"
 
-import landingImage from "@src/../public/images/landing/landing-image.svg"
-
+import { useBreakpoint } from "@src/shared/hooks"
 import {
   CardButtonsContainer,
   CardContainer,
@@ -10,17 +9,22 @@ import {
   CardMainContainer,
   CardTabletImageContainer,
 } from "./styles"
+import landingImage from "@src/../public/images/landing/landing-image.svg"
 
 export const Card: React.FC = () => {
+  const breakpoint = useBreakpoint()
+
   return (
     <CardContainer>
-      <CardImgContainer>
-        <Image
-          src={landingImage}
-          alt="Two people chatting through their phones."
-          priority
-        />
-      </CardImgContainer>
+      {breakpoint === "lg" && (
+        <CardImgContainer>
+          <Image
+            src={landingImage}
+            alt="Two people chatting through their phones."
+            priority
+          />
+        </CardImgContainer>
+      )}
 
       <CardMainContainer>
         <Logo size="sm" />
@@ -40,17 +44,21 @@ export const Card: React.FC = () => {
 
         <Spacer variant="stack" size={{ sm: "xs", md: "lg", lg: "xxs" }} />
 
-        <CardTabletImageContainer>
-          <div>
-            <Image
-              src={landingImage}
-              alt="Two people chatting through their phones."
-              priority
-            />
-          </div>
-        </CardTabletImageContainer>
+        {(breakpoint === "sm" || breakpoint === "md") && (
+          <>
+            <CardTabletImageContainer>
+              <div>
+                <Image
+                  src={landingImage}
+                  alt="Two people chatting through their phones."
+                  priority
+                />
+              </div>
+            </CardTabletImageContainer>
 
-        <Spacer variant="stack" size={{ sm: "xs", md: "xs", lg: "none" }} />
+            <Spacer variant="stack" size={{ sm: "xs", md: "xs", lg: "none" }} />
+          </>
+        )}
 
         <CardButtonsContainer>
           <Button data-testid="login-button">Login</Button>
