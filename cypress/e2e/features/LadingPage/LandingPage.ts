@@ -11,6 +11,7 @@ Given("I am on the landing page and i'm not logged in.", () => {
 Given(
   "I am on the landing page and I've been previously logged in in this device and browser.",
   () => {
+    cy.login()
     cy.visit("/")
   }
 )
