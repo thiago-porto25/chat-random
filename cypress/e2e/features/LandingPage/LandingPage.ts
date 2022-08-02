@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { When, Then, Given } from "@badeball/cypress-cucumber-preprocessor"
 
-import { testId } from "../../../utils"
+import { testId, accessibilityTest } from "../../../utils"
 
 // GIVEN
 Given("I am on the landing page and i'm not logged in.", () => {
@@ -43,15 +43,7 @@ When(
 )
 
 When("The page passes the lighthouse accessibility audit.", function () {
-  cy.lighthouse(
-    {
-      accessibility: 90,
-      "best-practices": 85,
-      seo: 90,
-    },
-    undefined,
-    undefined
-  )
+  accessibilityTest()
 })
 
 // THEN
