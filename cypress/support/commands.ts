@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 import "@cypress-audit/lighthouse/commands"
+import "cypress-plugin-tab"
 
 // Namespace shenanigans for @cypress-audit/lighthouse
 declare global {

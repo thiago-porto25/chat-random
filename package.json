@@ -65,6 +65,8 @@
     "commitizen": "^4.2.5",
     "cypress": "^10.3.1",
     "cypress-firebase": "^2.2.2",
+    "cypress-plugin-tab": "^1.0.5",
+    "cypress-real-events": "^1.7.1",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.3",

@@ -5,7 +5,9 @@ import { testId } from "../../../utils"
 
 // GIVEN
 Given("I am on the landing page and i'm not logged in.", () => {
+  cy.logout()
   cy.visit("/")
+  cy.wait(2000)
 })
 
 Given(
@@ -13,6 +15,7 @@ Given(
   () => {
     cy.login()
     cy.visit("/")
+    cy.wait(2000)
   }
 )
 
@@ -24,7 +27,7 @@ When("I click on the register button.", function () {
 When(
   "I press tab on my keyboard until I find the register button and press enter on it.",
   function () {
-    cy.type("{tab}{tab}{tab}{tab}{enter}")
+    cy.get("body").tab().tab().realType("{enter}")
   }
 )
 
@@ -35,15 +38,15 @@ When("I click on the login button.", function () {
 When(
   "I press tab on my keyboard until I find the login button and press enter on it.",
   function () {
-    cy.type("{tab}{tab}{tab}{enter}")
+    cy.get("body").tab().realType("{enter}")
   }
 )
 
 When("The page passes the lighthouse accessibility audit.", function () {
   cy.lighthouse(
     {
-      accessibility: 100,
-      "best-practices": 80,
+      accessibility: 90,
+      "best-practices": 85,
       seo: 90,
     },
     undefined,

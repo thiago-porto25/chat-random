@@ -16,12 +16,15 @@
 // Import commands.js using ES2015 syntax:
 import "./commands"
 
+// Cypress real events
+import "cypress-real-events/support"
+
+// Configure cypress-firebase
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { attachCustomCommands } from "cypress-firebase"
 
-// Configure cypress-firebase
 const fbConfig = {
   apiKey: Cypress.env("FIREBASE_API_KEY"),
   authDomain: Cypress.env("FIREBASE_AUTH_DOMAIN"),

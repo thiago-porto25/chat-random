@@ -1,5 +1,13 @@
+import { useState } from "react"
 import Image from "next/image"
-import { Button, Logo, Spacer, Typography } from "@thiagoporto/minim-ui"
+import {
+  Button,
+  Logo,
+  Modal,
+  ModalContent,
+  Spacer,
+  Typography,
+} from "@thiagoporto/minim-ui"
 
 import { useBreakpoint } from "@src/shared/hooks"
 import {
@@ -9,78 +17,111 @@ import {
   CardMainContainer,
   CardTabletImageContainer,
 } from "./styles"
+
 import landingImage from "@src/../public/images/landing/landing-image.svg"
 
 export const Card: React.FC = () => {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
   const breakpoint = useBreakpoint()
 
   return (
-    <CardContainer>
-      {breakpoint === "lg" && (
-        <CardImgContainer>
-          <Image
-            src={landingImage}
-            alt="Two people chatting through their phones."
-            priority
-          />
-        </CardImgContainer>
-      )}
+    <>
+      <Modal isOpen={isLoginModalOpen} close={setIsLoginModalOpen}>
+        <ModalContent>
+          <div data-testid="login-modal">testingasdasdasd</div>
+        </ModalContent>
+      </Modal>
 
-      <CardMainContainer>
-        <Logo size="sm" />
+      <Modal isOpen={isRegisterModalOpen} close={setIsRegisterModalOpen}>
+        <ModalContent>
+          <div data-testid="register-modal">testing</div>
+        </ModalContent>
+      </Modal>
 
-        <Spacer variant="stack" size={{ sm: "nn", md: "xxs", lg: "xxs" }} />
-
-        <Typography textStyle="heading1" as="h1" data-testid="welcome-message">
-          Join Chat Random Today
-        </Typography>
-
-        <Spacer variant="stack" size={{ sm: "xs", md: "xs", lg: "sm" }} />
-
-        <Typography textStyle="subHeading1" as="p">
-          Find someone to chat around the world right now, anonymously and
-          securely.
-        </Typography>
-
-        <Spacer variant="stack" size={{ sm: "xs", md: "lg", lg: "xxs" }} />
-
-        {(breakpoint === "sm" || breakpoint === "md") && (
-          <>
-            <CardTabletImageContainer>
-              <div>
-                <Image
-                  src={landingImage}
-                  alt="Two people chatting through their phones."
-                  priority
-                />
-              </div>
-            </CardTabletImageContainer>
-
-            <Spacer variant="stack" size={{ sm: "xs", md: "xs", lg: "none" }} />
-          </>
+      <CardContainer>
+        {breakpoint === "lg" && (
+          <CardImgContainer>
+            <Image
+              src={landingImage}
+              alt="Two people chatting through their phones."
+              priority
+            />
+          </CardImgContainer>
         )}
 
-        <CardButtonsContainer>
-          <Button data-testid="login-button">Login</Button>
+        <CardMainContainer>
+          <Logo size="sm" />
 
-          <Spacer
-            variant="stack"
-            size={{ sm: "xxxs", md: "xxxs", lg: "xxxs" }}
-          />
+          <Spacer variant="stack" size={{ sm: "nn", md: "xxs", lg: "xxs" }} />
 
-          <Button
-            bgColor="gray100"
-            hoverBgColor="gray80"
-            activeBgColor="gray80"
-            disabledBgColor="gray100"
-            data-testid="register-button"
+          <Typography
+            textStyle="heading1"
+            as="h1"
+            data-testid="welcome-message"
           >
-            Sign up
-          </Button>
+            Join Chat Random Today
+          </Typography>
 
-          <Spacer variant="stack" size={{ sm: "none", md: "md", lg: "xxs" }} />
-        </CardButtonsContainer>
-      </CardMainContainer>
-    </CardContainer>
+          <Spacer variant="stack" size={{ sm: "xs", md: "xs", lg: "sm" }} />
+
+          <Typography textStyle="subHeading1" as="p">
+            Find someone to chat around the world right now, anonymously and
+            securely.
+          </Typography>
+
+          <Spacer variant="stack" size={{ sm: "xs", md: "lg", lg: "xxs" }} />
+
+          {(breakpoint === "sm" || breakpoint === "md") && (
+            <>
+              <CardTabletImageContainer>
+                <div>
+                  <Image
+                    src={landingImage}
+                    alt="Two people chatting through their phones."
+                    priority
+                  />
+                </div>
+              </CardTabletImageContainer>
+
+              <Spacer
+                variant="stack"
+                size={{ sm: "xs", md: "xs", lg: "none" }}
+              />
+            </>
+          )}
+
+          <CardButtonsContainer>
+            <Button
+              data-testid="login-button"
+              onClick={() => setIsLoginModalOpen(true)}
+            >
+              Login
+            </Button>
+
+            <Spacer
+              variant="stack"
+              size={{ sm: "xxxs", md: "xxxs", lg: "xxxs" }}
+            />
+
+            <Button
+              bgColor="gray100"
+              hoverBgColor="gray80"
+              activeBgColor="gray80"
+              disabledBgColor="gray100"
+              data-testid="register-button"
+              onClick={() => setIsRegisterModalOpen(true)}
+            >
+              Sign up
+            </Button>
+
+            <Spacer
+              variant="stack"
+              size={{ sm: "none", md: "md", lg: "xxs" }}
+            />
+          </CardButtonsContainer>
+        </CardMainContainer>
+      </CardContainer>
+    </>
   )
 }
