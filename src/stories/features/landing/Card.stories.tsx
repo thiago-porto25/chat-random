@@ -7,4 +7,10 @@ export default {
   component: Card,
 } as ComponentMeta<typeof Card>
 
-export const Default: ComponentStory<typeof Card> = () => <Card />
+const mockFn = () => {
+  return
+}
+
+export const Default: ComponentStory<typeof Card> = () => (
+  <Card openLoginModal={mockFn} openRegisterModal={mockFn} />
+)

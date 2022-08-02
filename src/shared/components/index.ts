@@ -1,1 +1,2 @@
-export { Head } from "./Head"
+const a = 1
+export default a
