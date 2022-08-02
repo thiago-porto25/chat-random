@@ -39,3 +39,8 @@ ui-debug.log*
 
 # cypress
 /cypress/videos/
+cypress.env.json
+
+# firebase
+firebase-credentials.json
+dump/
