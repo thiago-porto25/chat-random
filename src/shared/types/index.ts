@@ -1,1 +1,1 @@
-export type { temporary__IBreakpoint } from "./Breakpoints.type"
+export type { IBreakpoint } from "./Breakpoints.type"

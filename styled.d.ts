@@ -1,7 +1,5 @@
 import "styled-components"
-import { theme } from "@thiagoporto/minim-ui/dist/theme"
-
-type ThemeType = typeof theme
+import { ThemeType } from "@thiagoporto/minim-ui"
 
 declare module "styled-components" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface

@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react"
 import { useTheme } from "styled-components"
 
-import { pxToNumber } from "../helpers"
-import { temporary__IBreakpoint } from "@src/shared/types"
+import { pxToNumber } from "@src/shared/helpers"
+import { IBreakpoint } from "@src/shared/types"
 
 export const useBreakpoint = () => {
-  const [breakpoint, setBreakpoint] = useState<temporary__IBreakpoint | null>(
-    null
-  )
+  const [breakpoint, setBreakpoint] = useState<IBreakpoint | null>(null)
   const theme = useTheme()
 
   useEffect(() => {
     const updateBreakpoint = (): void => {
-      if (window.innerWidth <= pxToNumber(theme.base.breakpoints.sm)) {
+      if (window.innerWidth < pxToNumber(theme.base.breakpoints.md)) {
         return setBreakpoint("sm")
       }
-      if (
-        window.innerWidth > pxToNumber(theme.base.breakpoints.sm) &&
-        window.innerWidth < pxToNumber(theme.base.breakpoints.lg)
-      ) {
+      if (window.innerWidth < pxToNumber(theme.base.breakpoints.lg)) {
         return setBreakpoint("md")
       }
       if (window.innerWidth >= pxToNumber(theme.base.breakpoints.lg)) {
