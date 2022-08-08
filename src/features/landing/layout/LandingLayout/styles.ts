@@ -22,7 +22,7 @@ export const LandingLayoutContainer = styled(Container).attrs({ as: "main" })`
     height: 100%;
 
     @media (min-width: ${theme.base.breakpoints.lg}) {
-      height: ${theme.base.breakpoints.md};
+      height: 640px;
       margin: ${theme.base.spacing.xs};
     }
   `}

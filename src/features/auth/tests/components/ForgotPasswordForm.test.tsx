@@ -1,4 +1,3 @@
-// TODO create tests
 import { ForgotPasswordForm } from "@features/auth/components"
 import { render } from "@src/test-utils"
 import { screen } from "@testing-library/react"

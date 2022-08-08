@@ -30,7 +30,7 @@ export const RegisterForm: React.FC<IFormProps> = ({ onSubmit }) => {
           <FormInput
             label="Password"
             name="password"
-            placeholder="***********"
+            placeholder="••••••••"
             type="password"
             data-testid={testId.password}
           />
@@ -40,7 +40,7 @@ export const RegisterForm: React.FC<IFormProps> = ({ onSubmit }) => {
           <FormInput
             label="Confirm Password"
             name="confirmPassword"
-            placeholder="***********"
+            placeholder="••••••••"
             type="password"
             data-testid={testId.confirmPassword}
           />

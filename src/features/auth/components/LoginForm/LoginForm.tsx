@@ -37,7 +37,7 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
           <FormInput
             label="Password"
             name="password"
-            placeholder="***********"
+            placeholder="••••••••"
             type="password"
             data-testid={testId.password}
           />
@@ -62,8 +62,7 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
             <Spacer variant="stack" size="nn" />
 
             <Button
-              disabled={submitting || errors?.email || errors?.password}
-              type="submit"
+              type="button"
               bgColor="white"
               hoverBgColor="gray10"
               activeBgColor="gray20"
@@ -71,11 +70,11 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
             >
               <GoogleIcon />
               <Spacer variant="inline" size="nn" />
-              Login with Google
+              <span>Login with Google</span>
             </Button>
           </ButtonsContainer>
 
-          <Spacer variant="stack" size="sm" />
+          <Spacer variant="stack" size="md" />
         </StyledForm>
       )}
     />

@@ -36,6 +36,8 @@ export const ForgotPasswordForm: React.FC<IFormProps> = ({ onSubmit }) => {
               Send
             </Button>
           </ButtonContainer>
+
+          <Spacer variant="stack" size="md" />
         </StyledForm>
       )}
     />

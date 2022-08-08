@@ -3,6 +3,8 @@ import { Input, Spacer, Typography } from "@thiagoporto/minim-ui"
 
 import type { IFormInputProps } from "@features/auth/types"
 
+import { InputContainer } from "./styles"
+
 export const FormInput: React.FC<IFormInputProps> = ({
   label,
   name,
@@ -21,7 +23,9 @@ export const FormInput: React.FC<IFormInputProps> = ({
             </>
           )}
 
-          <Input {...input} {...props} error={meta.touched && !!meta.error} />
+          <InputContainer>
+            <Input {...input} {...props} error={meta.touched && !!meta.error} />
+          </InputContainer>
 
           {meta.error && meta.touched && (
             <>
