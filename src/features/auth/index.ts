@@ -1,1 +1,1 @@
-export const test = 1
+export { LoginLayout, RegisterLayout } from "./layout"

@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Modal, ModalContent } from "@thiagoporto/minim-ui"
 
+import { LoginLayout, RegisterLayout } from "@src/features/auth"
+
 import { Card } from "@features/landing/components"
 import { LandingLayoutContainer, LandingLayoutWrapper } from "./styles"
 
@@ -16,13 +18,13 @@ export const LandingLayout: React.FC = () => {
       <LandingLayoutContainer>
         <Modal isOpen={isLoginModalOpen} close={setIsLoginModalOpen}>
           <ModalContent>
-            <div data-testid="login-modal">testingasdasdasd</div>
+            <LoginLayout close={setIsLoginModalOpen} />
           </ModalContent>
         </Modal>
 
         <Modal isOpen={isRegisterModalOpen} close={setIsRegisterModalOpen}>
           <ModalContent>
-            <div data-testid="register-modal">testing</div>
+            <RegisterLayout close={setIsRegisterModalOpen} />
           </ModalContent>
         </Modal>
 
