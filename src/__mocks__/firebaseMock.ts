@@ -32,19 +32,23 @@ const mockAuth = {
   signOut: jest.fn(() => {
     isSignIn = false
     authEmitter.emit("sign-out")
-    return Promise.resolve({ message: "logged out" })
+    return Promise.resolve()
   }),
   signInWithEmailAndPassword: jest.fn(() => {
     isSignIn = true
     authEmitter.emit("sign-in", user)
-    return Promise.resolve({ message: "logged in" })
+    return Promise.resolve({
+      user: {
+        displayName: "redirectResultTestDisplayName",
+        email: "redirectTest@test.com",
+        emailVerified: true,
+        uid: "id123",
+        sendEmailVerification: jest.fn(),
+      },
+    })
   }),
-  createUserWithEmailAndPassword: jest.fn(() =>
-    Promise.resolve({ message: "registered" })
-  ),
-  sendPasswordResetEmail: jest.fn(() =>
-    Promise.resolve({ message: "email sent" })
-  ),
+  createUserWithEmailAndPassword: jest.fn(() => Promise.resolve()),
+  sendPasswordResetEmail: jest.fn(() => Promise.resolve()),
 }
 
 const mockFirestore = {
