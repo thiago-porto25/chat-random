@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { useTheme } from "styled-components"
 
 import { pxToNumber } from "@src/shared/helpers"
-import { IBreakpoint } from "@src/shared/types"
+import { Breakpoint } from "@src/shared/types"
 
 export const useBreakpoint = () => {
-  const [breakpoint, setBreakpoint] = useState<IBreakpoint | null>(null)
+  const [breakpoint, setBreakpoint] = useState<Breakpoint | null>(null)
   const theme = useTheme()
 
   useEffect(() => {

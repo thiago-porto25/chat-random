@@ -1,11 +1,14 @@
 import type { AppProps } from "next/app"
 import Head from "next/head"
+import { Provider } from "react-redux"
 import { GlobalAndCSSReset, MinimThemeProvider } from "@thiagoporto/minim-ui"
 
 import "../firebase/config"
 import "../styles/global.css"
 import "@fontsource/anek-latin/latin.css"
 import "@fontsource/lato/latin.css"
+
+import { store } from "@src/store"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -46,8 +49,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* MISC */}
         <link rel="manifest" href="/manifest.json" />
       </Head>
+
       <GlobalAndCSSReset />
-      <Component {...pageProps} />
+
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </MinimThemeProvider>
   )
 }
