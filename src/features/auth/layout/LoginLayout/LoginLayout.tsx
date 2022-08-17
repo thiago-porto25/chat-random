@@ -4,16 +4,34 @@ import {
   CloseIcon,
   Logo,
   Spacer,
+  Toast,
   Typography,
 } from "@thiagoporto/minim-ui"
 
+import { useAppDispatch } from "@src/shared/hooks"
+
 import type { ILayoutProps } from "@features/auth/types"
+import { login, resetPassword } from "@features/auth/store/auth.slice"
 import { LoginForm, ForgotPasswordForm } from "@features/auth/components"
 
 import { AuthCloseIconContainer, AuthContainer } from "../styles"
 
 export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
   const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false)
+  const [toastOpen, setToastOpen] = useState(false)
+  const dispatch = useAppDispatch()
+
+  const handleLogin = (email: string, password: string) => {
+    dispatch(login({ email, password }))
+  }
+
+  const handleForgotPassword = (email: string) => {
+    dispatch(resetPassword({ email, successCallback }))
+  }
+
+  const successCallback = () => {
+    setToastOpen(true)
+  }
 
   useEffect(() => {
     document.body.style.overflow = "hidden"
@@ -25,6 +43,15 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
 
   return (
     <AuthContainer>
+      <Toast
+        isOpen={toastOpen}
+        close={setToastOpen}
+        type="success"
+        message="E-mail sent. Check your inbox for a link to reset your password."
+        verticalPosition="top"
+        duration={5000}
+      />
+
       <AuthCloseIconContainer>
         <ClickableIcon onClick={() => close(false)}>
           <CloseIcon />
@@ -49,11 +76,7 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
 
           <Spacer variant="stack" size="xxs" />
 
-          <ForgotPasswordForm
-            onSubmit={() => {
-              return
-            }}
-          />
+          <ForgotPasswordForm onSubmit={handleForgotPassword} />
         </>
       ) : (
         <>
@@ -65,13 +88,10 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
 
           <LoginForm
             openForgotPassword={() => setForgotPasswordOpen(true)}
-            onSubmit={() => {
-              return
-            }}
+            onSubmit={handleLogin}
           />
         </>
       )}
     </AuthContainer>
   )
 }
-// TODO: create layout

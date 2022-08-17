@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof FormInput> = (args) => (
     onSubmit={() => {
       return
     }}
-    validate={validateForgotPassword}
+    validate={(values: { email: string }) => validateForgotPassword(values, "")}
     render={({ handleSubmit }) => (
       <form onSubmit={handleSubmit} style={{ maxWidth: "600px" }}>
         <FormInput {...args} />

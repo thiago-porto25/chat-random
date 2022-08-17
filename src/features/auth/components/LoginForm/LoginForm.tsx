@@ -1,15 +1,24 @@
+import { useCallback, useEffect } from "react"
 import { Form } from "react-final-form"
-import { Button, Spacer, GoogleIcon, Typography } from "@thiagoporto/minim-ui"
+import { Button, Spacer, Typography } from "@thiagoporto/minim-ui"
 
 import { testId } from "@src/test-utils"
 
-import type { IFormProps } from "@features/auth/types"
+import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
+import { Spinner } from "@src/shared/components"
+
+import type { IAuthFormProps, ILoginFormValues } from "@features/auth/types"
+import {
+  clearAuthError,
+  selectAuthError,
+  selectAuthStatus,
+} from "@features/auth/store/auth.slice"
 import { validateLogin } from "@features/auth/validators"
 import { FormInput } from "@features/auth/components"
 
 import { StyledForm, ButtonsContainer } from "./styles"
 
-interface ILoginFormProps extends IFormProps {
+interface ILoginFormProps extends IAuthFormProps {
   openForgotPassword: () => void
 }
 
@@ -17,11 +26,25 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
   onSubmit,
   openForgotPassword,
 }) => {
+  const dispatch = useAppDispatch()
+  const error = useAppSelector(selectAuthError)
+  const status = useAppSelector(selectAuthStatus)
+
+  const clearErrors = useCallback(() => {
+    if (error) dispatch(clearAuthError())
+  }, [error, dispatch])
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearAuthError())
+    }
+  }, [dispatch])
+
   return (
     <Form
-      onSubmit={onSubmit}
+      onSubmit={({ email, password }) => onSubmit(email, password)}
       initialValues={{ email: "", password: "" }}
-      validate={validateLogin}
+      validate={(values: ILoginFormValues) => validateLogin(values, error)}
       render={({ handleSubmit, submitting, errors }) => (
         <StyledForm onSubmit={handleSubmit} data-testid={testId.loginForm}>
           <FormInput
@@ -30,6 +53,8 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
             placeholder="youremail@example.com"
             type="email"
             data-testid={testId.email}
+            autoComplete="email"
+            onChange={clearErrors}
           />
 
           <Spacer variant="stack" size="xxxs" />
@@ -40,6 +65,8 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
             placeholder="••••••••"
             type="password"
             data-testid={testId.password}
+            autoComplete="current-password"
+            onChange={clearErrors}
           />
 
           <Spacer variant="stack" size="nn" />
@@ -52,25 +79,16 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
 
           <ButtonsContainer>
             <Button
-              disabled={submitting || errors?.email || errors?.password}
+              disabled={
+                status === "loading" ||
+                submitting ||
+                errors?.email ||
+                errors?.password
+              }
               data-testid={testId.loginSubmit}
               type="submit"
             >
-              Login
-            </Button>
-
-            <Spacer variant="stack" size="nn" />
-
-            <Button
-              type="button"
-              bgColor="white"
-              hoverBgColor="gray10"
-              activeBgColor="gray20"
-              disabledBgColor="gray10"
-            >
-              <GoogleIcon />
-              <Spacer variant="inline" size="nn" />
-              <span>Login with Google</span>
+              {status === "loading" ? <Spinner /> : "Login"}
             </Button>
           </ButtonsContainer>
 

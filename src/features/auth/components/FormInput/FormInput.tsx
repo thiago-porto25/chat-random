@@ -8,6 +8,7 @@ import { InputContainer } from "./styles"
 export const FormInput: React.FC<IFormInputProps> = ({
   label,
   name,
+  onChange,
   ...props
 }) => {
   return (
@@ -24,7 +25,15 @@ export const FormInput: React.FC<IFormInputProps> = ({
           )}
 
           <InputContainer>
-            <Input {...input} {...props} error={meta.touched && !!meta.error} />
+            <Input
+              {...input}
+              {...props}
+              onChange={(e) => {
+                input.onChange(e)
+                onChange && onChange(e)
+              }}
+              error={meta.touched && !!meta.error}
+            />
           </InputContainer>
 
           {meta.error && meta.touched && (

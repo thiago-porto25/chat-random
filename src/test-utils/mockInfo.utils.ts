@@ -2,8 +2,8 @@
 
 export const mockInfo = {
   // errors
-  requiredEmailError: "Required",
-  requiredPasswordError: "Required",
+  requiredEmailError: "Email is required",
+  requiredPasswordError: "Password is required",
   requiredConfirmPasswordError: "Required",
   invalidEmailError: "Invalid email address",
   invalidPasswordError: "Password must be 6-20 characters long",

@@ -21,10 +21,5 @@ export const ButtonsContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    &:last-of-type {
-      border: 1px solid ${({ theme }) => theme.colors.brand.gray20};
-      color: ${({ theme }) => theme.colors.brand.gray100};
-    }
   }
 `

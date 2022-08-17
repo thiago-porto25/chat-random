@@ -6,38 +6,48 @@ import userEvent from "@testing-library/user-event"
 import { axe } from "jest-axe"
 
 import { mockInfo, testId } from "@src/test-utils"
+
+import { useAppSelector } from "@src/shared/hooks"
+
+import { selectAuthError } from "@features/auth/store/auth.slice"
 import { validateForgotPassword } from "@features/auth/validators"
 
-const MockComponent = () => (
-  <Form
-    onSubmit={() => {
-      return
-    }}
-    initialValues={{ email: "" }}
-    validate={validateForgotPassword}
-    render={({ handleSubmit, submitting, errors }) => (
-      <form onSubmit={handleSubmit} data-testid={testId.resetForm}>
-        <div>nothing</div>
+const MockComponent = () => {
+  const error = useAppSelector(selectAuthError)
 
-        <FormInput
-          label="Email"
-          name="email"
-          placeholder="youremail@example.com"
-          type="email"
-          data-testid={testId.email}
-        />
+  return (
+    <Form
+      onSubmit={() => {
+        return
+      }}
+      initialValues={{ email: "" }}
+      validate={(values: { email: string }) =>
+        validateForgotPassword(values, error)
+      }
+      render={({ handleSubmit, submitting, errors }) => (
+        <form onSubmit={handleSubmit} data-testid={testId.resetForm}>
+          <div>nothing</div>
 
-        <button
-          disabled={submitting || errors?.email}
-          data-testid={testId.resetSubmit}
-          type="submit"
-        >
-          Send
-        </button>
-      </form>
-    )}
-  />
-)
+          <FormInput
+            label="Email"
+            name="email"
+            placeholder="youremail@example.com"
+            type="email"
+            data-testid={testId.email}
+          />
+
+          <button
+            disabled={submitting || errors?.email}
+            data-testid={testId.resetSubmit}
+            type="submit"
+          >
+            Send
+          </button>
+        </form>
+      )}
+    />
+  )
+}
 
 describe("Feature: Auth - Component: FormInput", () => {
   it("should render without errors", () => {
@@ -80,7 +90,7 @@ describe("Feature: Auth - Component: FormInput", () => {
     const tempo = screen.getByText("nothing")
     await userEvent.click(tempo)
 
-    const error = await screen.findByText(mockInfo.requiredPasswordError)
+    const error = await screen.findByText(mockInfo.requiredEmailError)
 
     expect(error).toBeInTheDocument()
   })
@@ -88,7 +98,7 @@ describe("Feature: Auth - Component: FormInput", () => {
   it("should not have a error message if it has not been touched", () => {
     render(<MockComponent />)
 
-    const error = screen.queryByText(mockInfo.requiredPasswordError)
+    const error = screen.queryByText(mockInfo.requiredEmailError)
 
     expect(error).not.toBeInTheDocument()
   })

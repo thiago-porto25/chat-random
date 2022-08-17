@@ -8,4 +8,5 @@ export const testId = {
   email: "email-input",
   password: "password-input",
   confirmPassword: "confirm-password-input",
+  spinner: "loading-spinner",
 }
