@@ -33,7 +33,10 @@ export const validateRegister = (
     errors.password = mockInfo.requiredPasswordError
   }
 
-  if (values.password.length < 6 || values.password.length > 20) {
+  if (
+    values.password &&
+    (values.password.length < 6 || values.password.length) > 20
+  ) {
     errors.password = mockInfo.invalidPasswordError
   }
 

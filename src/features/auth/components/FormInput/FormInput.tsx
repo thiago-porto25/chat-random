@@ -1,6 +1,8 @@
 import { Field } from "react-final-form"
 import { Input, Spacer, Typography } from "@thiagoporto/minim-ui"
 
+import { testId } from "@src/test-utils"
+
 import type { IFormInputProps } from "@features/auth/types"
 
 import { InputContainer } from "./styles"
@@ -44,6 +46,7 @@ export const FormInput: React.FC<IFormInputProps> = ({
                 textStyle="error"
                 aria-label="Input error message"
                 as="span"
+                data-testid={testId.inputError}
               >
                 {meta.error}
               </Typography>

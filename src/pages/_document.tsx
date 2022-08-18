@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/render-result-naming-convention */
 import Document, { DocumentContext } from "next/document"
 import { ServerStyleSheet } from "styled-components"
 

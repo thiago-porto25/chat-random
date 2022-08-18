@@ -1,20 +1,22 @@
-import { User } from "firebase/auth"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 
 import type { RootState } from "@src/store"
+
+import { User } from "@src/shared/types"
+
 import type {
   IAuthPayload,
   IAuthState,
   IResetPayload,
 } from "@features/auth/types"
-import { AuthService } from "../services"
+import { AuthService } from "@features/auth/services"
 
 // Define the initial state using that type
 const initialState: IAuthState = {
   status: "idle",
   error: null,
-  user: null,
+  user: undefined,
 }
 
 export const authSlice = createSlice({

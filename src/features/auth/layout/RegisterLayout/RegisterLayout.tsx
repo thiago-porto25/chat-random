@@ -7,6 +7,8 @@ import {
   Typography,
 } from "@thiagoporto/minim-ui"
 
+import { testId } from "@src/test-utils"
+
 import { useAppDispatch } from "@src/shared/hooks"
 
 import type { ILayoutProps } from "@features/auth/types"
@@ -31,9 +33,18 @@ export const RegisterLayout: React.FC<ILayoutProps> = ({ close }) => {
   }, [])
 
   return (
-    <AuthContainer>
+    <AuthContainer data-testid={testId.registerModal}>
       <AuthCloseIconContainer>
-        <ClickableIcon onClick={() => close(false)}>
+        <ClickableIcon
+          tabIndex={0}
+          data-testid={testId.closeIcon}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              close(false)
+            }
+          }}
+          onClick={() => close(false)}
+        >
           <CloseIcon />
         </ClickableIcon>
       </AuthCloseIconContainer>

@@ -1,16 +1,62 @@
+import { useCallback, useEffect } from "react"
 import type { AppProps } from "next/app"
 import Head from "next/head"
 import { Provider } from "react-redux"
+import { onAuthStateChanged } from "firebase/auth"
 import { GlobalAndCSSReset, MinimThemeProvider } from "@thiagoporto/minim-ui"
+
+import { auth } from "@src/firebase"
+
+import { store } from "@src/store"
+
+import { useAppDispatch } from "@src/shared/hooks"
+
+import { removeUser, saveUser } from "@src/features/auth/store/auth.slice"
 
 import "../firebase/config"
 import "../styles/global.css"
 import "@fontsource/anek-latin/latin.css"
 import "@fontsource/lato/latin.css"
 
-import { store } from "@src/store"
+function MyAppWrapper(props: AppProps) {
+  return (
+    <Provider store={store}>
+      <MyApp {...props} />
+    </Provider>
+  )
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const dispatch = useAppDispatch()
+
+  const unsubAuthState = useCallback(
+    () =>
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          dispatch(
+            saveUser({
+              email: user.email,
+              uid: user.uid,
+              displayName: user.displayName,
+              metadata: {
+                creationTime: user.metadata.creationTime,
+                lastSignInTime: user.metadata.lastSignInTime,
+              },
+            })
+          )
+        } else {
+          dispatch(removeUser())
+        }
+      }),
+    [dispatch]
+  )
+
+  useEffect(() => {
+    return () => {
+      unsubAuthState()
+    }
+  }, [unsubAuthState])
+
   return (
     <MinimThemeProvider>
       <Head>
@@ -52,11 +98,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <GlobalAndCSSReset />
 
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <Component {...pageProps} />
     </MinimThemeProvider>
   )
 }
 
-export default MyApp
+export default MyAppWrapper
