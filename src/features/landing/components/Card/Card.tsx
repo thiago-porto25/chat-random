@@ -85,7 +85,7 @@ export const Card: React.FC<ICardProps> = ({
             Sign up
           </Button>
 
-          <Spacer variant="stack" size={{ sm: "none", md: "md", lg: "xxs" }} />
+          <Spacer variant="stack" size={{ sm: "xxs", md: "md", lg: "xxs" }} />
         </CardButtonsContainer>
       </CardMainContainer>
     </CardContainer>

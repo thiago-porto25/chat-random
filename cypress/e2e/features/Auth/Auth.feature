@@ -32,8 +32,7 @@ Feature: Auth
     Given I have the login modal open.
     When I input either an email that isn't registered or a password that is incorrect for that email.
     Then the login button should be disabled.
-    And I should see a toast error explaining what happend.
-    And the email and password fields should be reset.
+    And I should see an error message under the invalid input field.
 
   Scenario: As a not logged in user, I want to close the login modal.
 
@@ -87,22 +86,21 @@ Feature: Auth
     Given I have the login modal open.
     When I click the Forgot Password link.
     And I fill in the the reset form with a email that doesn't have an account associated with it and I press the send button.
-    Then I should see a toast error explaining what happend.
-    And the email field should be reset.
+    Then I should see an error message under the invalid input field.
 
   Scenario: As a not logged in user, I want to close the reset modal.
 
     Given I have the login modal open.
     When I click the Forgot Password link.
-    And I click the close icon.
+    When click the close icon.
     Then the reset modal should disappear.
 
   Scenario: As an user that that uses accessibility tools, I want to close the reset modal.
 
     Given I have the login modal open.
     When I click the Forgot Password link navigating with my keyboard.
-    And I click the close icon navigating with my keyboard.
-    Then The reset modal should disappear.
+    When click the close icon navigating with my keyboard.
+    Then the reset modal should disappear.
 
   Scenario: As an user that that uses accessibility tools, the reset modal must support my needs.
     Given I have the login modal open.
@@ -141,21 +139,13 @@ Feature: Auth
     Given I have the register modal open.
     When I input an email already used.
     Then the register button should be disabled.
-    And I should see a toast error explaining what happend.
-    And the email, password and confirm password fields should be reset.
+    And I should see an error message under the invalid input field.
 
   Scenario: As a not registered user, I want to close the register modal.
 
     Given I have the register modal open.
     When click the close icon.
     Then the register modal should disappear.
-
-  Scenario: As an user that that uses accessibility tools, I want to close the register modal.
-
-    Given I have the register modal open.
-    When click the close icon navigating with my keyboard.
-    Then the register modal should disappear.
-
 
   Scenario: As an user that that uses accessibility tools, the register modal must support my needs.
     Given I have the register modal open.

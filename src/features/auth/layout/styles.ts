@@ -9,6 +9,7 @@ export const AuthContainer = styled.div`
     background-color: ${theme.colors.pure.white};
     padding: ${theme.base.spacing.xxs} ${theme.base.spacing.xxxs};
     display: flex;
+    flex: 1;
     flex-direction: column;
     position: relative;
     overflow: auto;
@@ -22,8 +23,8 @@ export const AuthContainer = styled.div`
       padding: ${theme.base.spacing.xxs};
       max-width: 480px;
       min-width: 480px;
-      max-height: 760px;
-      min-height: 760px;
+      max-height: 650px;
+      min-height: 650px;
       height: 100%;
     }
   `}

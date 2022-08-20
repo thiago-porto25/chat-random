@@ -5,7 +5,6 @@ import { Button, Spacer } from "@thiagoporto/minim-ui"
 import { testId } from "@src/test-utils"
 
 import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
-import { Spinner } from "@src/shared/components"
 
 import type { IAuthFormProps, IRegisterFormValues } from "@features/auth/types"
 import {
@@ -86,8 +85,9 @@ export const RegisterForm: React.FC<IAuthFormProps> = ({ onSubmit }) => {
               }
               data-testid={testId.registerSubmit}
               type="submit"
+              isLoading={status === "loading"}
             >
-              {status === "loading" ? <Spinner /> : "Submit"}
+              Submit
             </Button>
           </ButtonContainer>
 

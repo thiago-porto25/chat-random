@@ -5,7 +5,6 @@ import { Button, Spacer, Typography } from "@thiagoporto/minim-ui"
 import { testId } from "@src/test-utils"
 
 import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
-import { Spinner } from "@src/shared/components"
 
 import type { IAuthFormProps, ILoginFormValues } from "@features/auth/types"
 import {
@@ -71,7 +70,13 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
 
           <Spacer variant="stack" size="nn" />
 
-          <Typography onClick={openForgotPassword} textStyle="link" as="a">
+          <Typography
+            onClick={openForgotPassword}
+            textStyle="link"
+            as="a"
+            tabIndex={0}
+            data-testid={testId.resetButton}
+          >
             Forgot your password?
           </Typography>
 
@@ -87,8 +92,9 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
               }
               data-testid={testId.loginSubmit}
               type="submit"
+              isLoading={status === "loading"}
             >
-              {status === "loading" ? <Spinner /> : "Login"}
+              Login
             </Button>
           </ButtonsContainer>
 

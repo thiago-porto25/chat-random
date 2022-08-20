@@ -56,12 +56,8 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
 
       <AuthCloseIconContainer>
         <ClickableIcon
+          tabIndex={0}
           data-testid={testId.closeIcon}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              close(false)
-            }
-          }}
           onClick={() => close(false)}
         >
           <CloseIcon />
@@ -73,8 +69,12 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
       <Spacer variant="stack" size="xxxs" />
 
       {forgotPasswordOpen ? (
-        <div data-testid={testId.resetModal}>
-          <Typography textStyle="heading2" as="h1">
+        <>
+          <Typography
+            data-testid={testId.resetModal}
+            textStyle="heading2"
+            as="h1"
+          >
             Reset Password
           </Typography>
 
@@ -87,10 +87,14 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
           <Spacer variant="stack" size="xxs" />
 
           <ForgotPasswordForm onSubmit={handleForgotPassword} />
-        </div>
+        </>
       ) : (
-        <div data-testid={testId.loginModal}>
-          <Typography textStyle="heading2" as="h1">
+        <>
+          <Typography
+            data-testid={testId.loginModal}
+            textStyle="heading2"
+            as="h1"
+          >
             Login
           </Typography>
 
@@ -100,7 +104,7 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
             openForgotPassword={() => setForgotPasswordOpen(true)}
             onSubmit={handleLogin}
           />
-        </div>
+        </>
       )}
     </AuthContainer>
   )

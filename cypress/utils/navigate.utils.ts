@@ -13,13 +13,15 @@ export const navigate = {
   },
   accessibleResetModal: () => {
     navigate.loginModal()
-    cy.tab().tab().tab().realType("{enter}")
+    cy.tab().tab().tab().tab().tab().tab().realClick()
   },
   closeModal: () => {
-    cy.get(testId.CLOSE_BTN).realClick()
+    cy.scrollTo("top")
+    cy.get(testId.CLOSE_BTN).click()
   },
   accessibleCloseModal: () => {
-    cy.tab().realType("{type}")
+    cy.wait(500)
+    cy.tab().tab().realType("{enter}")
   },
 }
 

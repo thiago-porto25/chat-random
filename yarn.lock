@@ -3752,10 +3752,10 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.3.0.tgz#0a6750b94b40e4739706d41e8efc2ccf64d2aad9"
   integrity sha512-P02xtBBa8yMaLhK8CzJCIns8rqwnF6FxhR9zs810flHOBXUYCFjLd8Io1rQrAkQRWEmW2PGdZIEdMxf/KLsqFA==
 
-"@thiagoporto/minim-ui@^0.1.4-alpha":
-  version "0.1.4-alpha"
-  resolved "https://registry.yarnpkg.com/@thiagoporto/minim-ui/-/minim-ui-0.1.4-alpha.tgz#fb333197b9b0dbe17f989c04be3a11fb0fd069f3"
-  integrity sha512-hZ2h/7P4juPHxgDCGpt9DBMl9ADka6Ux4hwIrwY2pIH09ekxCBn30N8yT8GzTtIDfz6gHIsVl4vYnz42AnJ/MA==
+"@thiagoporto/minim-ui@^0.1.6-alpha":
+  version "0.1.6-alpha"
+  resolved "https://registry.yarnpkg.com/@thiagoporto/minim-ui/-/minim-ui-0.1.6-alpha.tgz#58c898a0a7f2df530858ec8ad78d9468f92b42f8"
+  integrity sha512-VTXz43GkOcUi6eqGO3qllfm/a2Ac+20bOvk96mPMFh4pT+kfCVU38C1ciVAcZzisip/a2Jxrn3WWHNm9r7SwCA==
   dependencies:
     dayjs "^1.11.4"
 

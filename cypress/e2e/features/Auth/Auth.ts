@@ -107,15 +107,6 @@ And(
   }
 )
 
-And("I should see a toast error explaining what happend.", function () {
-  cy.contains(/error/i).should("be.visible")
-})
-
-And("the email and password fields should be reset.", function () {
-  cy.get(testId.EMAIL_INPUT).should("have.value", "")
-  cy.get(testId.PASSWORD_INPUT).should("have.value", "")
-})
-
 And(
   "I fill in the the reset form with a valid email and I press the send button.",
   function () {
@@ -142,38 +133,17 @@ And(
   }
 )
 
-And("the email field should be reset.", function () {
-  cy.get(testId.EMAIL_INPUT).should("have.value", "")
-})
-
-And("click the close icon.", function () {
-  navigate.closeModal()
-})
-
-And("click the close icon navigating with my keyboard.", function () {
-  navigate.accessibleCloseModal()
-})
-
-And(
-  "the email, password and confirm password fields should be reset.",
-  function () {
-    cy.get(testId.EMAIL_INPUT).should("have.value", "")
-    cy.get(testId.PASSWORD_INPUT).should("have.value", "")
-    cy.get(testId.CONFIRM_PASSWORD_INPUT).should("have.value", "")
-  }
-)
-
 // THEN
 Then("I should be logged in and be redirected to my home page.", function () {
   cy.url().should("include", "/home")
 })
 
 Then("the login button should be disabled.", function () {
-  cy.get(testId.LOGIN_BTN).should("have.attr", "disabled")
+  cy.get(testId.LOGIN_BTN_SUBMIT).should("have.attr", "disabled")
 })
 
 Then("the login modal should disappear.", function () {
-  cy.get(testId.LOGIN_MODAL).should("not.be.visible")
+  cy.get(testId.LOGIN_MODAL).should("not.exist")
 })
 
 Then("I should be able to browse the modal without problem.", function () {
@@ -183,20 +153,17 @@ Then("I should be able to browse the modal without problem.", function () {
 Then(
   "I should see a success message telling me to go to my email inbox to reset my password.",
   function () {
-    cy.contains(/check your email/i).should("be.visible")
+    cy.contains(/check/i).should("be.visible")
   }
 )
 
 Then("the send button should be disabled.", function () {
-  cy.get(testId.RESET_BTN).should("have.attr", "disabled")
-})
-
-Then("I should see a toast error explaining what happend.", function () {
-  cy.contains(/error/i).should("be.visible")
+  cy.get(testId.RESET_BTN_SUBMIT).should("have.attr", "disabled")
 })
 
 Then("the reset modal should disappear.", function () {
-  cy.get(testId.RESET_MODAL).should("not.be.visible")
+  cy.tab().realType("{enter}")
+  cy.get(testId.RESET_MODAL).should("not.exist")
 })
 
 Then(
@@ -207,9 +174,9 @@ Then(
 )
 
 Then("the register button should be disabled.", function () {
-  cy.get(testId.REGISTER_BTN).should("have.attr", "disabled")
+  cy.get(testId.REGISTER_BTN_SUBMIT).should("have.attr", "disabled")
 })
 
 Then("the register modal should disappear.", function () {
-  cy.get(testId.REGISTER_MODAL).should("not.be.visible")
+  cy.get(testId.REGISTER_MODAL).should("not.exist")
 })

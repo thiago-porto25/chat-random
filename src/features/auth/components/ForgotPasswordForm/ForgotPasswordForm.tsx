@@ -5,7 +5,6 @@ import { Button, Spacer } from "@thiagoporto/minim-ui"
 import { testId } from "@src/test-utils"
 
 import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
-import { Spinner } from "@src/shared/components"
 
 import type {
   IForgotPasswordFormValues,
@@ -61,8 +60,9 @@ export const ForgotPasswordForm: React.FC<IResetFormProps> = ({ onSubmit }) => {
               disabled={status === "loading" || submitting || errors?.email}
               data-testid={testId.resetSubmit}
               type="submit"
+              isLoading={status === "loading"}
             >
-              {status === "loading" ? <Spinner /> : "Send"}
+              Send
             </Button>
           </ButtonContainer>
 

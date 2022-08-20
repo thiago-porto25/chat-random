@@ -38,11 +38,6 @@ export const RegisterLayout: React.FC<ILayoutProps> = ({ close }) => {
         <ClickableIcon
           tabIndex={0}
           data-testid={testId.closeIcon}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              close(false)
-            }
-          }}
           onClick={() => close(false)}
         >
           <CloseIcon />
