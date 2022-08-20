@@ -1,10 +1,15 @@
 import type { NextPage } from "next"
 
 import { LandingLayout } from "@src/features/landing"
-import { WithAuth } from "@src/shared/guards"
+
+import { WithoutUserGuard } from "@src/shared/guards"
+import { LoadingLayout } from "@src/shared/layouts"
 
 const Landing: NextPage = () => {
-  WithAuth()
+  const loading = WithoutUserGuard()
+
+  if (loading) return <LoadingLayout />
+
   return <LandingLayout />
 }
 

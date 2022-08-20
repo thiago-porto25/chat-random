@@ -8,7 +8,8 @@ export const CardContainer = styled.div`
     height: 100%;
 
     @media (min-width: ${theme.base.breakpoints.lg}) {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       background-color: ${theme.colors.brand.gray10};
       height: ${theme.base.breakpoints.md};
       border-radius: ${theme.base.borderRadius.md};
@@ -22,18 +23,28 @@ export const CardImgContainer = styled.section`
     display: none;
     position: relative;
 
-    img {
-      width: 100%;
-      height: auto;
-    }
-
     @media (min-width: ${theme.base.breakpoints.lg}) {
       display: flex;
-      width: 50%;
-      padding: ${theme.base.spacing.nn};
+      width: 100%;
+      padding: ${theme.base.spacing.xxs};
       border-top-left-radius: ${theme.base.borderRadius.md};
       border-bottom-left-radius: ${theme.base.borderRadius.md};
       background-color: ${theme.colors.brand.gray30};
+    }
+  `}
+`
+
+export const CardMainContainer = styled.section`
+  ${({ theme }) => css`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: ${theme.base.spacing.xxs} ${theme.base.spacing.xxxs};
+
+    @media (min-width: ${theme.base.breakpoints.lg}) {
+      /* width: 50%; */
+      padding: ${theme.base.spacing.xxs} ${theme.base.spacing.xxs};
     }
   `}
 `
@@ -50,11 +61,6 @@ export const CardTabletImageContainer = styled.div`
       width: 250px;
       position: relative;
 
-      img {
-        width: 100%;
-        height: auto;
-      }
-
       @media (min-width: 400px) {
         width: 80%;
       }
@@ -66,21 +72,6 @@ export const CardTabletImageContainer = styled.div`
 
     @media (min-width: ${theme.base.breakpoints.lg}) {
       display: none;
-    }
-  `}
-`
-
-export const CardMainContainer = styled.section`
-  ${({ theme }) => css`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: ${theme.base.spacing.xxs} ${theme.base.spacing.xxxs};
-
-    @media (min-width: ${theme.base.breakpoints.lg}) {
-      width: 50%;
-      padding: ${theme.base.spacing.xxs} ${theme.base.spacing.xxs};
     }
   `}
 `

@@ -1,1 +1,3 @@
-export type { temporary__IBreakpoint } from "./Breakpoints.type"
+export type { Breakpoint } from "./Breakpoints.interface"
+export type { Status } from "./Status.interface"
+export type { User } from "./User.interface"

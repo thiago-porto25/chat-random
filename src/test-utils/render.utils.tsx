@@ -1,3 +1,4 @@
+import { Provider } from "react-redux"
 import {
   render,
   renderHook,
@@ -6,12 +7,16 @@ import {
 } from "@testing-library/react"
 import { GlobalAndCSSReset, MinimThemeProvider } from "@thiagoporto/minim-ui"
 
+import { store } from "@src/store"
+
 const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <MinimThemeProvider>
-      <GlobalAndCSSReset />
-      {children}
-    </MinimThemeProvider>
+    <Provider store={store}>
+      <MinimThemeProvider>
+        <GlobalAndCSSReset />
+        {children}
+      </MinimThemeProvider>
+    </Provider>
   )
 }
 

@@ -9,7 +9,7 @@ describe("Feature: Landing - Component: Card", () => {
   beforeAll(substituteNextImage)
 
   it("should render without throwing errors", async () => {
-    render(<Card />)
+    render(<Card openLoginModal={jest.fn} openRegisterModal={jest.fn} />)
 
     const loginButton = await screen.findByText(/Login/i)
     const registerButton = await screen.findByText(/Sign Up/i)
@@ -17,7 +17,7 @@ describe("Feature: Landing - Component: Card", () => {
     const subheading = await screen.findByText(
       /Find someone to chat around the world right now, anonymously and securely./i
     )
-    const image = await screen.findByAltText(/two people/i)
+    const image = screen.getAllByAltText(/two people/i)[0]
 
     expect(loginButton).toBeInTheDocument()
     expect(registerButton).toBeInTheDocument()
@@ -27,7 +27,9 @@ describe("Feature: Landing - Component: Card", () => {
   })
 
   it("should not have basic accessibility issues", async () => {
-    const { container } = render(<Card />)
+    const { container } = render(
+      <Card openLoginModal={jest.fn} openRegisterModal={jest.fn} />
+    )
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
