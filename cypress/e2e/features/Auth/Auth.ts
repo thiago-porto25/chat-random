@@ -13,6 +13,7 @@ Given("I have the login modal open.", function () {
 
 Given("I have the register modal open.", function () {
   cy.logout()
+  cy.wait(1000)
   cy.visit("/")
   cy.wait(2000)
   navigate.registerModal()

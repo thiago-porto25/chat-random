@@ -14,6 +14,11 @@ export const testId = {
   CONFIRM_PASSWORD_INPUT: "[data-testid='confirm-password-input']",
   INPUT_ERROR: "[data-testid='input-error']",
   CLOSE_BTN: "[data-testid='close-button']",
+  CHAT_NOW_BTN: "[data-testid='chat-now-button']",
+  TRY_BUTTON: "[data-testid='try-button']",
+  SETTINGS_BTN: "[data-testid='settings-button']",
+  LOGOUT_BTN: "[data-testid='logout-button']",
+  NO_CHAT_TITLE: "[data-testid='no-chat-title']",
 }
 
 export const data = {
