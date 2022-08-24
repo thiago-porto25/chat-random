@@ -21,4 +21,10 @@ export const testId = {
 
   inputError: "input-error",
   closeIcon: "close-button",
+
+  chatNowButton: "chat-now-button",
+  tryButton: "try-button",
+  noChatTitle: "no-chat-title",
+  settingsButton: "settings-button",
+  logoutButton: "logout-button",
 }
