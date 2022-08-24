@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 
-import { LandingLayout } from "@src/features/landing"
+import { LandingLayout } from "@src/features/landing/layouts"
 
 import { WithoutUserGuard } from "@src/shared/guards"
 import { LoadingLayout } from "@src/shared/layouts"
