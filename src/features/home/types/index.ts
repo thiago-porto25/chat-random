@@ -1,2 +1,2 @@
-export type { IDefaultContent } from "./DefaultContent"
-export type { INoChatContent } from "./NoChatContent"
+export type { IDefaultContent } from "./DefaultContent.interface"
+export type { INoChatContent } from "./NoChatContent.interface"

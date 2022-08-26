@@ -54,6 +54,21 @@ const mockAuth = {
 const mockFirestore = {
   getFirestore: jest.fn().mockReturnValue({}),
   connectFirestoreEmulator: jest.fn(),
+  onSnapshot: jest.fn().mockReturnValue({}),
+  doc: jest.fn().mockReturnValue({}),
+  query: jest.fn().mockReturnValue({}),
+  where: jest.fn().mockReturnValue({}),
+  collection: jest.fn().mockReturnValue({}),
+  getDocs: jest.fn().mockReturnValue([{ id: "123123" }]),
+  limit: jest.fn().mockReturnValue({}),
+  addDoc: jest.fn().mockReturnValue({}),
+  updateDoc: jest.fn().mockReturnValue({}),
+  arrayUnion: jest.fn().mockReturnValue({}),
+  writeBatch: jest.fn().mockReturnValue({
+    commit: () => {
+      return
+    },
+  }),
 }
 
 const mockFirebase = {

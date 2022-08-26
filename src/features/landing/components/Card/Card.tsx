@@ -3,7 +3,7 @@ import { Button, Logo, Spacer, Typography } from "@thiagoporto/minim-ui"
 
 import { useBreakpoint } from "@src/shared/hooks"
 
-import { ICardProps } from "@features/landing/types"
+import { ICard } from "@features/landing/types"
 import {
   CardButtonsContainer,
   CardContainer,
@@ -14,7 +14,7 @@ import {
 
 import landingImage from "@src/../public/images/landing/landing-image.svg"
 
-export const Card: React.FC<ICardProps> = ({
+export const Card: React.FC<ICard> = ({
   openLoginModal,
   openRegisterModal,
 }) => {

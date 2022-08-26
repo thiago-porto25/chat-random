@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import { Unsubscribe } from "firebase/firestore"
 import {
   ClickableIcon,
   Logo,
@@ -10,8 +12,17 @@ import {
 
 import { testId } from "@src/test-utils"
 
-import { useAppDispatch } from "@src/shared/hooks"
+import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
 import { LoadingLayout } from "@src/shared/layouts"
+
+import { logout, selectAuthUser } from "@src/features/auth/store/auth.slice"
+
+import {
+  findOrCreateChat,
+  initializeCreatedChatListener,
+  selectChatFindStatus,
+  selectChatId,
+} from "@src/features/chat/store/chat.slice"
 
 import { DefaultContent, NoChatContent } from "@features/home/components"
 import {
@@ -21,34 +32,47 @@ import {
 } from "./styles"
 
 export const HomeLayout: React.FC = () => {
-  const [chatNotFound, setChatNotFound] = useState(false)
-  const [loading, setLoading] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const router = useRouter()
   const dispatch = useAppDispatch()
+  const authUser = useAppSelector(selectAuthUser)
+  const chatId = useAppSelector(selectChatId)
+  const status = useAppSelector(selectChatFindStatus)
 
   const openSettings = () => setSettingsOpen(true)
 
   const dispatchChat = () => {
-    // TODO: will become dispatch
-    setLoading(true)
-
-    setTimeout(() => {
-      setChatNotFound(true)
-      setLoading(false)
-    }, 2000)
+    if (authUser)
+      dispatch(
+        findOrCreateChat({ navigate: router.push, authUserId: authUser?.uid })
+      )
   }
 
   const dispatchTryWithBot = () => {
     // TODO: will become dispatch
+    // TODO: UPDATE NoChatContent with content explaining that a chat has been open and we are waiting for someone to enter it, add a loading indicator. Give the user the choice to wait to chat with a bot
     console.log("navigate to chat with bot")
   }
 
   const dispatchLogout = () => {
-    // TODO: will become dispatch
-    console.log("Logged out")
+    dispatch(logout())
   }
 
-  if (loading) return <LoadingLayout />
+  useEffect(() => {
+    let unsub: Unsubscribe | null = null
+
+    if (chatId && status === "created") {
+      unsub = dispatch(
+        initializeCreatedChatListener({ navigate: router.push, chatId })
+      )
+    }
+
+    return () => {
+      if (unsub !== null) unsub()
+    }
+  }, [status, chatId, dispatch, router.push])
+
+  if (status === "loading") return <LoadingLayout />
 
   return (
     <HomeLayoutWrapper>
@@ -72,7 +96,7 @@ export const HomeLayout: React.FC = () => {
 
         <Logo size={{ sm: "xxl", md: "xxl", lg: "uul" }} />
         <Spacer variant="stack" size={{ sm: "md", md: "md", lg: "sm" }} />
-        {chatNotFound ? (
+        {status === "created" ? (
           <NoChatContent handleClick={dispatchTryWithBot} />
         ) : (
           <DefaultContent handleClick={dispatchChat} />

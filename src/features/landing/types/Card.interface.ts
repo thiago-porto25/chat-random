@@ -1,4 +1,4 @@
-export interface ICardProps {
+export interface ICard {
   openLoginModal: () => void
   openRegisterModal: () => void
 }

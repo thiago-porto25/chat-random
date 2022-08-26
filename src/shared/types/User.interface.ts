@@ -1,6 +1,6 @@
 import { User as FirebaseUser } from "firebase/auth"
 
-export interface User {
+export interface IUser {
   email: FirebaseUser["email"]
   uid: FirebaseUser["uid"]
   displayName: FirebaseUser["displayName"]

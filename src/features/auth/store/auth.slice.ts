@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 
 import type { RootState } from "@src/store"
 
-import { User } from "@src/shared/types"
+import { IUser } from "@src/shared/types"
 
 import type {
   IAuthPayload,
@@ -23,7 +23,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    saveUser: (state, action: PayloadAction<User>) => {
+    saveUser: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload
     },
     removeUser: (state) => {
