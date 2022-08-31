@@ -53,6 +53,7 @@ const mockAuth = {
 
 const mockFirestore = {
   getFirestore: jest.fn().mockReturnValue({}),
+  initializeFirestore: jest.fn().mockReturnValue({}),
   connectFirestoreEmulator: jest.fn(),
   onSnapshot: jest.fn().mockReturnValue({}),
   doc: jest.fn().mockReturnValue({}),

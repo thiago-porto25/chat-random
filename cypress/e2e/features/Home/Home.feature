@@ -19,11 +19,6 @@ Feature: Home Page
     When I click the Try with bot button.
     Then I should go to chat page.
 
-  Scenario: As logged in user, I want to be notified if an error occurs when finding a chat.
-    Given I am on the Home page and I'm logged in.
-    When I click the Chat now button and there's an error finding a new chat.
-    Then I should see an error toast message.
-
   Scenario: As an user that that uses accessibility tools, the home page must support my needs.
     Given I am on the Home page and I'm logged in.
     When The page passes the lighthouse accessibility audit.

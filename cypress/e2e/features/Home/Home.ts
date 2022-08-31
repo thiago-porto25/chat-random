@@ -6,13 +6,20 @@ import { testId, accessibilityTest } from "../../../utils"
 // GIVEN
 Given("I am on the Home page and I'm logged in.", function () {
   cy.login()
-  cy.callFirestore("set", "chats", "readyChat.json")
+  cy.callFirestore("set", "chats/test", {
+    messages: [],
+    participants: ["asud98asd98asdixmkxmcxl99ddl"],
+    full: false,
+  })
+  cy.visit("/home")
+  cy.wait(2000)
 })
 
 Given(
   "I am on the Home page, I'm logged in and there's no one to chat.",
   function () {
-    cy.login()
+    cy.visit("/home")
+    cy.wait(2000)
   }
 )
 
@@ -30,21 +37,14 @@ When("I click the Try with bot button.", function () {
   cy.get(testId.TRY_BUTTON).realClick()
 })
 
-When(
-  "I click the Chat now button and there's an error finding a new chat.",
-  function () {
-    cy.get(testId.CHAT_NOW_BTN).realClick()
-    cy.intercept("/accounts:signUp", new Error("Error"))
-  }
-)
-
 When("The page passes the lighthouse accessibility audit.", function () {
   accessibilityTest()
 })
 
 // Then
 Then("I should be logged out.", function () {
-  cy.url().should("have.string", "/")
+  cy.wait(2000)
+  cy.url().should("match", /\/$/)
 })
 
 Then(
@@ -56,11 +56,8 @@ Then(
 )
 
 Then("I should go to chat page.", function () {
-  cy.url().should("have.string", "/home")
-})
-
-Then("I should see an error toast message.", function () {
-  cy.contains("Error").should("be.visible")
+  cy.wait(2000)
+  cy.url().should("have.string", "/chat")
 })
 
 Then("I should be able to browse the website without problem.", function () {
