@@ -5,11 +5,7 @@ export interface IFindOrCreateChatPayload {
   authUserId: string
 }
 
-export interface IInitializeCreatedChatListenerPayload {
-  navigate: NextRouter["push"]
-}
-
-export interface IFindOrCreateSuccessPayload {
+export interface IFindOrCreateFoundPayload {
   chatId: string
 }
 
@@ -17,7 +13,11 @@ export interface IFindOrCreateCreatedPayload {
   createdChatId: string
 }
 
-export interface IInitializeCreatedChatListenerPayload {
+export interface IListenChatPayload {
   navigate: NextRouter["push"]
+  chatId: string
+}
+
+export interface IDeleteChatPayload {
   chatId: string
 }

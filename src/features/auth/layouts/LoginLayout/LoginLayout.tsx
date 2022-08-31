@@ -13,9 +13,10 @@ import { testId } from "@src/test-utils"
 import { useAppDispatch } from "@src/shared/hooks"
 
 import type { ILayoutProps } from "@features/auth/types"
-import { login, resetPassword } from "@features/auth/store/auth.slice"
-import { LoginForm, ForgotPasswordForm } from "@features/auth/components"
+import { loginEffect } from "@features/auth/store/effects/login.effect"
+import { resetPasswordEffect } from "@features/auth/store/effects/resetPassword.effect"
 
+import { LoginForm, ForgotPasswordForm } from "@features/auth/components"
 import { AuthCloseIconContainer, AuthContainer } from "../styles"
 
 export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
@@ -24,11 +25,11 @@ export const LoginLayout: React.FC<ILayoutProps> = ({ close }) => {
   const dispatch = useAppDispatch()
 
   const handleLogin = (email: string, password: string) => {
-    dispatch(login({ email, password }))
+    dispatch(loginEffect({ email, password }))
   }
 
   const handleForgotPassword = (email: string) => {
-    dispatch(resetPassword({ email, successCallback }))
+    dispatch(resetPasswordEffect({ email, successCallback }))
   }
 
   const successCallback = () => {

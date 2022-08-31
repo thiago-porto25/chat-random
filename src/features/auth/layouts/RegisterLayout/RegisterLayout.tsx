@@ -12,7 +12,7 @@ import { testId } from "@src/test-utils"
 import { useAppDispatch } from "@src/shared/hooks"
 
 import type { ILayoutProps } from "@features/auth/types"
-import { register } from "@features/auth/store/auth.slice"
+import { registerEffect } from "@features/auth/store/effects/register.effect"
 import { RegisterForm } from "@features/auth/components"
 
 import { AuthContainer, AuthCloseIconContainer } from "../styles"
@@ -21,7 +21,7 @@ export const RegisterLayout: React.FC<ILayoutProps> = ({ close }) => {
   const dispatch = useAppDispatch()
 
   const handleRegister = (email: string, password: string) => {
-    dispatch(register({ email, password }))
+    dispatch(registerEffect({ email, password }))
   }
 
   useEffect(() => {

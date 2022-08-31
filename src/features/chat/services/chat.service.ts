@@ -8,6 +8,7 @@ import {
   doc,
   arrayUnion,
   writeBatch,
+  deleteDoc,
 } from "firebase/firestore"
 
 import { chatsCollection, db } from "@src/firebase"
@@ -19,6 +20,7 @@ export class ChatService {
     await this.deleteAll(authUserId)
 
     const q = query(chatsCollection, where("full", "==", false), limit(1))
+
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((docSnap) => {
       docId = docSnap.id
@@ -26,7 +28,7 @@ export class ChatService {
 
     await updateDoc(doc(chatsCollection, docId), {
       full: true,
-      messages: arrayUnion(authUserId),
+      participants: arrayUnion(authUserId),
     })
 
     return docId
@@ -57,5 +59,9 @@ export class ChatService {
     })
 
     await batch.commit()
+  }
+
+  public static async delete(chatId: string): Promise<void> {
+    await deleteDoc(doc(chatsCollection, chatId))
   }
 }

@@ -7,14 +7,14 @@ import { testId } from "@src/test-utils"
 import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
 
 import type { IAuthFormProps, ILoginFormValues } from "@features/auth/types"
+import { clearAuthError } from "@features/auth/store/auth.slice"
 import {
-  clearAuthError,
   selectAuthError,
   selectAuthStatus,
-} from "@features/auth/store/auth.slice"
+} from "@features/auth/store/selectors"
 import { validateLogin } from "@features/auth/validators"
-import { FormInput } from "@features/auth/components"
 
+import { FormInput } from "@features/auth/components"
 import { StyledForm, ButtonsContainer } from "./styles"
 
 interface ILoginFormProps extends IAuthFormProps {

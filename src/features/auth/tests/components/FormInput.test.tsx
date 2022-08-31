@@ -9,7 +9,7 @@ import { mockInfo, testId } from "@src/test-utils"
 
 import { useAppSelector } from "@src/shared/hooks"
 
-import { selectAuthError } from "@features/auth/store/auth.slice"
+import { selectAuthError } from "@features/auth/store/selectors"
 import { validateForgotPassword } from "@features/auth/validators"
 
 const MockComponent = () => {

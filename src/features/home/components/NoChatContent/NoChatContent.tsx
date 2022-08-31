@@ -14,16 +14,18 @@ export const NoChatContent: React.FC<INoChatContent> = ({ handleClick }) => {
       <Spacer variant="stack" size={{ sm: "xxxs", md: "xxxs", lg: "nn" }} />
 
       <Typography textStyle="subHeading1" as="p">
-        No worries, you can still try out our app by chatting with one of our
-        bots
+        No worries, you can wait here until we find someone to chat or you can
+        try out our app by chatting with one of our bots
       </Typography>
 
       <Spacer variant="stack" size={{ sm: "md", md: "md", lg: "sm" }} />
 
       <Button
         variant="secondary"
-        large
         ripple
+        w="auto"
+        px="xxs"
+        h="xs"
         onClick={handleClick}
         data-testid={testId.tryButton}
       >
