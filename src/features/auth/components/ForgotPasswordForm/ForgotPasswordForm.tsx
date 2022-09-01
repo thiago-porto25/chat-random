@@ -10,14 +10,14 @@ import type {
   IForgotPasswordFormValues,
   IResetFormProps,
 } from "@features/auth/types"
+import { clearAuthError } from "@features/auth/store/auth.slice"
 import {
-  clearAuthError,
   selectAuthError,
   selectAuthStatus,
-} from "@features/auth/store/auth.slice"
+} from "@features/auth/store/selectors"
 import { validateForgotPassword } from "@features/auth/validators"
-import { FormInput } from "@features/auth/components"
 
+import { FormInput } from "@features/auth/components"
 import { StyledForm, ButtonContainer } from "./styles"
 
 export const ForgotPasswordForm: React.FC<IResetFormProps> = ({ onSubmit }) => {

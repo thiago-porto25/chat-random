@@ -1,0 +1,1 @@
+export { NoChatContent } from "./NoChatContent"

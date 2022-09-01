@@ -2,15 +2,13 @@ import { testId, data } from "./constants.utils"
 
 export const input = {
   correctLogin: () => {
-    cy.get(testId.EMAIL_INPUT).focus().realType(data.USED_EMAIL)
-    cy.get(testId.PASSWORD_INPUT).focus().realType(data.USED_PASSWORD)
+    cy.get(testId.EMAIL_INPUT).focus().wait(200).realType(data.USED_EMAIL)
+    cy.get(testId.PASSWORD_INPUT).focus().wait(200).realType(data.USED_PASSWORD)
     cy.get(testId.LOGIN_BTN_SUBMIT).realClick()
   },
 
   correctAccessibleLogin: () => {
     cy.tab()
-      .tab()
-      .tab()
       .realType(data.USED_EMAIL)
       .tab()
       .realType(data.USED_PASSWORD)
@@ -31,18 +29,12 @@ export const input = {
   },
 
   correctReset: () => {
-    cy.get(testId.EMAIL_INPUT).focus().realType(data.USED_EMAIL)
+    cy.get(testId.EMAIL_INPUT).focus().wait(200).realType(data.USED_EMAIL)
     cy.get(testId.RESET_BTN_SUBMIT).realClick()
   },
 
   correctAccessibleReset: () => {
-    cy.tab()
-      .tab()
-      .tab()
-      .tab()
-      .realType(data.USED_EMAIL)
-      .tab()
-      .realType("{enter}")
+    cy.tab().tab().realType(data.USED_EMAIL).tab().realType("{enter}")
   },
 
   incorrectReset: () => {
@@ -56,15 +48,20 @@ export const input = {
   },
 
   correctRegister: () => {
-    cy.get(testId.EMAIL_INPUT).focus().realType(data.VALID_EMAIL)
-    cy.get(testId.PASSWORD_INPUT).focus().realType(data.VALID_PASSWORD)
-    cy.get(testId.CONFIRM_PASSWORD_INPUT).focus().realType(data.VALID_PASSWORD)
+    cy.get(testId.EMAIL_INPUT).focus().wait(200).realType(data.VALID_EMAIL)
+    cy.get(testId.PASSWORD_INPUT)
+      .focus()
+      .wait(200)
+      .realType(data.VALID_PASSWORD)
+    cy.get(testId.CONFIRM_PASSWORD_INPUT)
+      .focus()
+      .wait(200)
+      .realType(data.VALID_PASSWORD)
     cy.get(testId.REGISTER_BTN_SUBMIT).realClick()
   },
 
   correctAccessibleRegister: () => {
     cy.tab()
-      .tab()
       .realType(data.VALID_EMAIL + "a")
       .tab()
       .realType(data.VALID_PASSWORD)
@@ -82,9 +79,15 @@ export const input = {
   },
 
   usedEmailRegister: () => {
-    cy.get(testId.EMAIL_INPUT).focus().realType(data.USED_EMAIL)
-    cy.get(testId.PASSWORD_INPUT).focus().realType(data.VALID_PASSWORD)
-    cy.get(testId.CONFIRM_PASSWORD_INPUT).focus().realType(data.VALID_PASSWORD)
+    cy.get(testId.EMAIL_INPUT).focus().wait(200).realType(data.USED_EMAIL)
+    cy.get(testId.PASSWORD_INPUT)
+      .focus()
+      .wait(200)
+      .realType(data.VALID_PASSWORD)
+    cy.get(testId.CONFIRM_PASSWORD_INPUT)
+      .focus()
+      .wait(200)
+      .realType(data.VALID_PASSWORD)
     cy.get(testId.REGISTER_BTN_SUBMIT).realClick()
   },
 }

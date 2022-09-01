@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Modal, ModalContent } from "@thiagoporto/minim-ui"
 
-import { LoginLayout, RegisterLayout } from "@src/features/auth"
+import { LoginLayout, RegisterLayout } from "@features/auth/layouts"
 
 import { Card } from "@features/landing/components"
 import { LandingLayoutContainer, LandingLayoutWrapper } from "./styles"

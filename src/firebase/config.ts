@@ -1,6 +1,11 @@
 import { FirebaseOptions, initializeApp } from "firebase/app"
 import { getAuth, connectAuthEmulator } from "firebase/auth"
-import { getFirestore, connectFirestoreEmulator } from "firebase/firestore"
+import {
+  connectFirestoreEmulator,
+  initializeFirestore,
+} from "firebase/firestore"
+
+const isDevelopment = process.env.NODE_ENV === "development"
 
 const config: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,9 +18,12 @@ const config: FirebaseOptions = {
 
 const app = initializeApp(config)
 const auth = getAuth(app)
-const db = getFirestore(app)
+const db = initializeFirestore(
+  app,
+  isDevelopment ? { experimentalForceLongPolling: true } : {}
+)
 
-if (process.env.NODE_ENV === "development") {
+if (isDevelopment) {
   connectFirestoreEmulator(db, "localhost", 9098)
   connectAuthEmulator(auth, "http://localhost:9099")
 }
