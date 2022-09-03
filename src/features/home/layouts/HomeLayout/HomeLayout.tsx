@@ -63,6 +63,7 @@ export const HomeLayout: React.FC = () => {
 
   const dispatchLogout = () => {
     dispatch(logoutEffect())
+    if (chatId) dispatch(deleteChatEffect({ chatId }))
   }
 
   useEffect(() => {
@@ -76,14 +77,6 @@ export const HomeLayout: React.FC = () => {
       if (unsub !== null) unsub()
     }
   }, [status, chatId, dispatch, router.push])
-
-  useEffect(() => {
-    return () => {
-      if (chatId) {
-        dispatch(deleteChatEffect({ chatId }))
-      }
-    }
-  }, [dispatch, chatId])
 
   if (status === "loading") return <LoadingLayout />
 
