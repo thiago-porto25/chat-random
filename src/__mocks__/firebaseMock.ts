@@ -60,7 +60,12 @@ const mockFirestore = {
   query: jest.fn().mockReturnValue({}),
   where: jest.fn().mockReturnValue({}),
   collection: jest.fn().mockReturnValue({}),
-  getDocs: jest.fn().mockReturnValue([{ id: "123123" }]),
+  getDocs: jest.fn().mockReturnValue({
+    docs: [{ id: "123123" }],
+    forEach: () => {
+      "123123"
+    },
+  }),
   deleteDoc: jest.fn().mockReturnValue({}),
   limit: jest.fn().mockReturnValue({}),
   addDoc: jest.fn().mockReturnValue({}),
@@ -71,6 +76,11 @@ const mockFirestore = {
       return
     },
   }),
+  Timestamp: {
+    now: jest.fn().mockReturnValue({
+      toDate: jest.fn(),
+    }),
+  },
 }
 
 const mockFirebase = {

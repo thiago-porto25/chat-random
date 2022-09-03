@@ -27,4 +27,9 @@ export const testId = {
   noChatTitle: "no-chat-title",
   settingsButton: "settings-button",
   logoutButton: "logout-button",
+
+  messagesContainer: "chat-messages-container",
+  chat: "chat-input",
+  chatSubmit: "chat-button-submit",
+  chatLeave: "chat-button-leave",
 }
