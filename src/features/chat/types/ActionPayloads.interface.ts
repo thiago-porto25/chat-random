@@ -21,3 +21,12 @@ export interface IListenChatPayload {
 export interface IDeleteChatPayload {
   chatId: string
 }
+
+export interface ISendMessagePayload {
+  chatId: string
+  authorId: string
+  content: string
+}
+export interface IListenMessagesPayload {
+  chatId: string
+}

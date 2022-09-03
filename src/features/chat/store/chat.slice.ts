@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 import type {
+  IChatDocument,
   IChatState,
   IFindOrCreateCreatedPayload,
   IFindOrCreateFoundPayload,
@@ -10,7 +11,7 @@ const initialState: IChatState = {
   findOrCreateChatStatus: "idle",
   chatId: null,
   isChattingWithBot: false,
-  //TODO: add chat Object as property to chat state, create selector for its value
+  chatData: null,
 }
 
 export const chatSlice = createSlice({
@@ -43,6 +44,10 @@ export const chatSlice = createSlice({
     chatWithBotAction: (state) => {
       state.isChattingWithBot = true
     },
+
+    updateChat: (state, action: PayloadAction<IChatDocument>) => {
+      state.chatData = action.payload
+    },
   },
 })
 
@@ -53,6 +58,7 @@ export const {
   findOrCreateFoundAction,
   findOrCreateCreatedAction,
   chatWithBotAction,
+  updateChat,
 } = chatSlice.actions
 
 export default chatSlice.reducer
