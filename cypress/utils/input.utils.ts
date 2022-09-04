@@ -90,6 +90,15 @@ export const input = {
       .realType(data.VALID_PASSWORD)
     cy.get(testId.REGISTER_BTN_SUBMIT).realClick()
   },
+
+  messageChat: () => {
+    cy.get(testId.CHAT_INPUT).focus().realType(data.MESSAGE)
+    cy.get(testId.CHAT_SUBMIT).realClick()
+  },
+
+  accessibleMessageChat: () => {
+    cy.tab().tab().tab().focus().realType(`${data.MESSAGE}{enter}`)
+  },
 }
 
 Object.freeze(input)
