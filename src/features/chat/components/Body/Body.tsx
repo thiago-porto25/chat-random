@@ -8,7 +8,7 @@ import { selectAuthUser } from "@src/features/auth/store/selectors"
 
 import type { IBody } from "@features/chat/types"
 
-import { Container } from "./styles"
+import { Container, MessageContainer } from "./styles"
 
 export const Body: React.FC<IBody> = ({ messages }) => {
   const authUser = useAppSelector(selectAuthUser)
@@ -19,15 +19,17 @@ export const Body: React.FC<IBody> = ({ messages }) => {
 
       {messages.length > 0 &&
         messages.map((message, i) => (
-          <>
+          <MessageContainer
+            key={`message-${i}-${message.authorId.slice(0, 5)}`}
+            sent={authUser?.uid === message.authorId}
+          >
             <Message
               message={message.content}
               timestamp={message.timestamp.toDate()}
               sent={authUser?.uid === message.authorId}
-              key={`message-${i}-${message.authorId[0]}`}
             />
             <Spacer variant="stack" size="xxxs" />
-          </>
+          </MessageContainer>
         ))}
     </Container>
   )

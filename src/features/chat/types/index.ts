@@ -8,3 +8,5 @@ export type { IMessageWithDate } from "./MessageWIthDate.interface"
 export type { IBody } from "./Body.interface"
 export type { IFooter } from "./Footer.interface"
 export type { IHeader } from "./Header.interface"
+
+export type { IMessageContainer } from "./MessageContainer.interface"
