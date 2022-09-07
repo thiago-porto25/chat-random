@@ -20,11 +20,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@emoji-mart/data": "^1.0.5",
     "@fontsource/anek-latin": "^4.5.1",
     "@fontsource/lato": "^4.5.8",
     "@reduxjs/toolkit": "^1.8.3",
-    "@thiagoporto/minim-ui": "^0.1.7-alpha",
+    "@thiagoporto/minim-ui": "^0.1.8-alpha",
     "date-fns": "^2.29.1",
     "emoji-mart": "3.0.1",
     "final-form": "4.20.4",
