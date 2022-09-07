@@ -17,7 +17,10 @@ import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
 import { LoadingLayout } from "@src/shared/layouts"
 import { CHAT } from "@src/shared/constants/routes"
 
-import { chatWithBotAction } from "@src/features/chat/store/chat.slice"
+import {
+  chatWithBotAction,
+  resetChatStateAction,
+} from "@src/features/chat/store/chat.slice"
 import { findOrCreateChatEffect } from "@src/features/chat/store/effects/findOrCreateChat.effect"
 import { ListenChatEffect } from "@src/features/chat/store/effects/ListenChat.effect"
 import { deleteChatEffect } from "@src/features/chat/store/effects/deleteChat.effect"
@@ -57,8 +60,10 @@ export const HomeLayout: React.FC = () => {
   }
 
   const dispatchTryWithBot = () => {
-    dispatch(chatWithBotAction())
-    router.push(`/${CHAT}`)
+    if (authUser) {
+      dispatch(chatWithBotAction(authUser))
+      router.push(`/${CHAT}`)
+    }
   }
 
   const dispatchLogout = () => {
@@ -77,6 +82,10 @@ export const HomeLayout: React.FC = () => {
       if (unsub !== null) unsub()
     }
   }, [status, chatId, dispatch, router.push])
+
+  useEffect(() => {
+    dispatch(resetChatStateAction())
+  }, [dispatch])
 
   if (status === "loading") return <LoadingLayout />
 

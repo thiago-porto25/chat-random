@@ -12,7 +12,7 @@ export const WithUserGuard = () => {
   const loading = useMemo(() => !user, [user])
 
   useEffect(() => {
-    if (!user) {
+    if (user === null) {
       router.push(`${ROUTES.LANDING}`)
     }
   }, [user, router])

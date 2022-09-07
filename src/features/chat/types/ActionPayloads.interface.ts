@@ -30,3 +30,8 @@ export interface ISendMessagePayload {
 export interface IListenMessagesPayload {
   chatId: string
 }
+
+export interface ISendMessageToBotPayload {
+  authorId: string
+  content: string
+}

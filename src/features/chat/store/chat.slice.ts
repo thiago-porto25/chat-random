@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
+import { IUser } from "@src/shared/types"
+
 import type {
   IChatDocument,
   IChatState,
   IFindOrCreateCreatedPayload,
   IFindOrCreateFoundPayload,
+  IMessageDocument,
 } from "@features/chat/types"
 
 const initialState: IChatState = {
@@ -41,11 +44,28 @@ export const chatSlice = createSlice({
       state.findOrCreateChatStatus = "failed"
     },
 
-    chatWithBotAction: (state) => {
+    chatWithBotAction: (state, action: PayloadAction<IUser>) => {
       state.isChattingWithBot = true
+      state.chatData = {
+        full: true,
+        messages: [],
+        participants: [action.payload.uid, "CHATBOT"],
+      }
+    },
+    leaveBotChatAction: (state) => {
+      state.isChattingWithBot = false
+      state.chatId = null
+    },
+    updateMessagesWithBotAction: (
+      state,
+      action: PayloadAction<IMessageDocument>
+    ) => {
+      if (state.chatData) {
+        state.chatData.messages = [...state.chatData.messages, action.payload]
+      }
     },
 
-    updateChat: (state, action: PayloadAction<IChatDocument>) => {
+    updateChatAction: (state, action: PayloadAction<IChatDocument>) => {
       state.chatData = action.payload
     },
   },
@@ -58,7 +78,9 @@ export const {
   findOrCreateFoundAction,
   findOrCreateCreatedAction,
   chatWithBotAction,
-  updateChat,
+  updateChatAction,
+  leaveBotChatAction,
+  updateMessagesWithBotAction,
 } = chatSlice.actions
 
 export default chatSlice.reducer

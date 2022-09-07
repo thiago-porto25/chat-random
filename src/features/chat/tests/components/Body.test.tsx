@@ -15,6 +15,10 @@ const mockMessages = [
 ]
 
 describe("Feature: Chat - Component: Body", () => {
+  window.HTMLElement.prototype.scrollIntoView = function () {
+    return
+  }
+
   it("should render without errors", () => {
     render(<Body messages={mockMessages} />)
 

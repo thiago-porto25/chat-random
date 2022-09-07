@@ -9,9 +9,16 @@ import { selectAuthUser } from "@src/features/auth/store/selectors"
 import type { IBody } from "@features/chat/types"
 
 import { Container, MessageContainer } from "./styles"
+import { useEffect, useRef } from "react"
 
 export const Body: React.FC<IBody> = ({ messages }) => {
+  const chatBottomRef = useRef<HTMLDivElement>(null)
   const authUser = useAppSelector(selectAuthUser)
+
+  useEffect(() => {
+    if (chatBottomRef.current)
+      chatBottomRef.current.scrollIntoView({ behavior: "smooth" })
+  }, [messages])
 
   return (
     <Container data-testid={testId.messagesContainer}>
@@ -31,6 +38,7 @@ export const Body: React.FC<IBody> = ({ messages }) => {
             <Spacer variant="stack" size="xxxs" />
           </MessageContainer>
         ))}
+      <div ref={chatBottomRef} />
     </Container>
   )
 }
