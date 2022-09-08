@@ -1,9 +1,7 @@
+import { IMessageDocument } from "./MessageDocument.interface"
+
 export interface IChatDocument {
   participants: string[]
-  messages: __TEST_MESSAGE[]
+  messages: IMessageDocument[]
   full: boolean
-}
-
-interface __TEST_MESSAGE {
-  a: string
 }

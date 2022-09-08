@@ -1,7 +1,6 @@
 import type { AppDispatch } from "@src/store"
 
 import type { IDeleteChatPayload } from "@features/chat/types"
-import { resetChatStateAction } from "@features/chat/store/chat.slice"
 import { ChatService } from "@features/chat/services"
 
 export function deleteChatEffect(payload: IDeleteChatPayload) {
@@ -12,7 +11,7 @@ export function deleteChatEffect(payload: IDeleteChatPayload) {
       // eslint-disable-next-line no-console
       console.error(error)
     } finally {
-      dispatch(resetChatStateAction())
+      dispatch(payload.finishAction())
     }
   }
 }

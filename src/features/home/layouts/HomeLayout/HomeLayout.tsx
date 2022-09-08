@@ -17,7 +17,12 @@ import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
 import { LoadingLayout } from "@src/shared/layouts"
 import { CHAT } from "@src/shared/constants/routes"
 
-import { chatWithBotAction } from "@src/features/chat/store/chat.slice"
+import {
+  chatWithBotAction,
+  resetChatStateAction,
+  resetChatStateAfterDeleteBotAction,
+} from "@src/features/chat/store/chat.slice"
+
 import { findOrCreateChatEffect } from "@src/features/chat/store/effects/findOrCreateChat.effect"
 import { ListenChatEffect } from "@src/features/chat/store/effects/ListenChat.effect"
 import { deleteChatEffect } from "@src/features/chat/store/effects/deleteChat.effect"
@@ -57,12 +62,22 @@ export const HomeLayout: React.FC = () => {
   }
 
   const dispatchTryWithBot = () => {
-    dispatch(chatWithBotAction())
-    router.push(`/${CHAT}`)
+    if (authUser && chatId) {
+      dispatch(
+        deleteChatEffect({
+          chatId,
+          finishAction: resetChatStateAfterDeleteBotAction,
+        })
+      )
+      dispatch(chatWithBotAction(authUser))
+      router.push(`/${CHAT}`)
+    }
   }
 
   const dispatchLogout = () => {
     dispatch(logoutEffect())
+    if (chatId)
+      dispatch(deleteChatEffect({ chatId, finishAction: resetChatStateAction }))
   }
 
   useEffect(() => {
@@ -78,12 +93,8 @@ export const HomeLayout: React.FC = () => {
   }, [status, chatId, dispatch, router.push])
 
   useEffect(() => {
-    return () => {
-      if (chatId) {
-        dispatch(deleteChatEffect({ chatId }))
-      }
-    }
-  }, [dispatch, chatId])
+    dispatch(resetChatStateAction())
+  }, [dispatch])
 
   if (status === "loading") return <LoadingLayout />
 

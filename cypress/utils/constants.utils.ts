@@ -19,6 +19,9 @@ export const testId = {
   SETTINGS_BTN: "[data-testid='settings-button']",
   LOGOUT_BTN: "[data-testid='logout-button']",
   NO_CHAT_TITLE: "[data-testid='no-chat-title']",
+  CHAT_SUBMIT: "[data-testid='chat-button-submit']",
+  CHAT_LEAVE: "[data-testid='chat-button-leave']",
+  CHAT_INPUT: "[data-testid='chat-input']",
 }
 
 export const data = {
@@ -29,6 +32,7 @@ export const data = {
   USED_EMAIL: "test@test.com",
   USED_PASSWORD: "123456abc",
   NO_ACCOUNT_EMAIL: "noaccount@gmail.com",
+  MESSAGE: "Hello World!",
 }
 
 Object.freeze(testId)

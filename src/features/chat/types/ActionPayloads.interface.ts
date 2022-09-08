@@ -1,3 +1,4 @@
+import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit"
 import type { NextRouter } from "next/router"
 
 export interface IFindOrCreateChatPayload {
@@ -20,4 +21,19 @@ export interface IListenChatPayload {
 
 export interface IDeleteChatPayload {
   chatId: string
+  finishAction: ActionCreatorWithoutPayload
+}
+
+export interface ISendMessagePayload {
+  chatId: string
+  authorId: string
+  content: string
+}
+export interface IListenMessagesPayload {
+  chatId: string
+}
+
+export interface ISendMessageToBotPayload {
+  authorId: string
+  content: string
 }

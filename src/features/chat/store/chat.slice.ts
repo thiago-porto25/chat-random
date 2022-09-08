@@ -1,16 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
+import { IUser } from "@src/shared/types"
+
 import type {
+  IChatDocument,
   IChatState,
   IFindOrCreateCreatedPayload,
   IFindOrCreateFoundPayload,
+  IMessageDocument,
 } from "@features/chat/types"
 
 const initialState: IChatState = {
   findOrCreateChatStatus: "idle",
   chatId: null,
   isChattingWithBot: false,
-  //TODO: add chat Object as property to chat state, create selector for its value
+  chatData: null,
 }
 
 export const chatSlice = createSlice({
@@ -26,7 +30,6 @@ export const chatSlice = createSlice({
       state,
       action: PayloadAction<IFindOrCreateFoundPayload>
     ) => {
-      state.findOrCreateChatStatus = "succeeded"
       state.chatId = action.payload.chatId
     },
     findOrCreateCreatedAction: (
@@ -40,8 +43,30 @@ export const chatSlice = createSlice({
       state.findOrCreateChatStatus = "failed"
     },
 
-    chatWithBotAction: (state) => {
+    chatWithBotAction: (state, action: PayloadAction<IUser>) => {
       state.isChattingWithBot = true
+      state.chatData = {
+        full: true,
+        messages: [],
+        participants: [action.payload.uid, "CHATBOT"],
+      }
+    },
+    leaveBotChatAction: (state) => {
+      state.isChattingWithBot = false
+      state.chatId = null
+    },
+    updateMessagesWithBotAction: (
+      state,
+      action: PayloadAction<IMessageDocument>
+    ) => {
+      if (state.chatData) {
+        state.chatData.messages = [...state.chatData.messages, action.payload]
+      }
+    },
+    resetChatStateAfterDeleteBotAction: (state) => state,
+
+    updateChatAction: (state, action: PayloadAction<IChatDocument>) => {
+      state.chatData = action.payload
     },
   },
 })
@@ -53,6 +78,10 @@ export const {
   findOrCreateFoundAction,
   findOrCreateCreatedAction,
   chatWithBotAction,
+  updateChatAction,
+  leaveBotChatAction,
+  updateMessagesWithBotAction,
+  resetChatStateAfterDeleteBotAction,
 } = chatSlice.actions
 
 export default chatSlice.reducer
