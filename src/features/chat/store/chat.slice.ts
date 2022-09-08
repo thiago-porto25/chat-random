@@ -30,7 +30,6 @@ export const chatSlice = createSlice({
       state,
       action: PayloadAction<IFindOrCreateFoundPayload>
     ) => {
-      state.findOrCreateChatStatus = "succeeded"
       state.chatId = action.payload.chatId
     },
     findOrCreateCreatedAction: (
@@ -64,6 +63,7 @@ export const chatSlice = createSlice({
         state.chatData.messages = [...state.chatData.messages, action.payload]
       }
     },
+    resetChatStateAfterDeleteBotAction: (state) => state,
 
     updateChatAction: (state, action: PayloadAction<IChatDocument>) => {
       state.chatData = action.payload
@@ -81,6 +81,7 @@ export const {
   updateChatAction,
   leaveBotChatAction,
   updateMessagesWithBotAction,
+  resetChatStateAfterDeleteBotAction,
 } = chatSlice.actions
 
 export default chatSlice.reducer

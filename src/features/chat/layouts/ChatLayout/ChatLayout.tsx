@@ -5,7 +5,10 @@ import { useAppDispatch, useAppSelector } from "@src/shared/hooks"
 
 import { selectAuthUser } from "@src/features/auth/store/selectors"
 
-import { leaveBotChatAction } from "@features/chat/store/chat.slice"
+import {
+  leaveBotChatAction,
+  resetChatStateAction,
+} from "@features/chat/store/chat.slice"
 import { sendMessageEffect } from "@features/chat/store/effects/sendMessage.effect"
 import { ListenMessagesEffect } from "@features/chat/store/effects/listenMessages.effect"
 import { deleteChatEffect } from "@features/chat/store/effects/deleteChat.effect"
@@ -31,7 +34,8 @@ export const ChatLayout: React.FC = () => {
     if (isChattingWithBot) {
       dispatch(leaveBotChatAction())
       return
-    } else if (chatId) dispatch(deleteChatEffect({ chatId }))
+    } else if (chatId)
+      dispatch(deleteChatEffect({ chatId, finishAction: resetChatStateAction }))
   }
 
   const handleSend = () => {
