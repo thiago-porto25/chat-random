@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react"
+import { useEffect } from "react"
 import type { AppProps } from "next/app"
 import Head from "next/head"
 import { Provider } from "react-redux"
@@ -13,7 +13,6 @@ import { useAppDispatch } from "@src/shared/hooks"
 
 import { removeUser, saveUser } from "@src/features/auth/store/auth.slice"
 
-import "../firebase/config"
 import "../styles/global.css"
 import "@fontsource/anek-latin/latin.css"
 import "@fontsource/lato/latin.css"
@@ -29,33 +28,28 @@ function MyAppWrapper(props: AppProps) {
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useAppDispatch()
 
-  const unsubAuthState = useCallback(
-    () =>
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          dispatch(
-            saveUser({
-              email: user.email,
-              uid: user.uid,
-              displayName: user.displayName,
-              metadata: {
-                creationTime: user.metadata.creationTime,
-                lastSignInTime: user.metadata.lastSignInTime,
-              },
-            })
-          )
-        } else {
-          dispatch(removeUser())
-        }
-      }),
-    [dispatch]
-  )
-
   useEffect(() => {
+    const unsubAuthState = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          saveUser({
+            email: user.email,
+            uid: user.uid,
+            displayName: user.displayName,
+            metadata: {
+              creationTime: user.metadata.creationTime,
+              lastSignInTime: user.metadata.lastSignInTime,
+            },
+          })
+        )
+      } else {
+        dispatch(removeUser())
+      }
+    })
     return () => {
       unsubAuthState()
     }
-  }, [unsubAuthState])
+  }, [dispatch])
 
   return (
     <MinimThemeProvider>
