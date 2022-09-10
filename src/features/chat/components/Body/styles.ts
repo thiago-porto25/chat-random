@@ -43,4 +43,5 @@ export const MessageContainer = styled.div<IMessageContainer>`
   display: flex;
   flex-direction: column;
   align-items: ${({ sent }) => (sent ? "end" : "start")};
+  word-break: break-all;
 `
