@@ -1,5 +1,5 @@
-import { faker } from "@faker-js/faker"
+import { randPhrase, randEmoji } from "@ngneat/falso"
 
 export const createBotMessage = (): string => {
-  return faker.hacker.phrase()
+  return randPhrase() + " " + randEmoji()
 }

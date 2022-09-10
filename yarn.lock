@@ -1537,11 +1537,6 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@faker-js/faker@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-7.5.0.tgz#8e8265f65f5b68d2a57886d59b03788eeb676264"
-  integrity sha512-8wNUCCUHvfvI0gQpDUho/3gPzABffnCn5um65F8dzQ86zz6dlt4+nmAA7PQUc8L+eH+9RgR/qzy5N/8kN0Ozdw==
-
 "@fastify/busboy@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-1.1.0.tgz#4472f856e2bb5a9ee34ad64b93891b73b73537ca"
@@ -2532,6 +2527,14 @@
   version "12.2.3"
   resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.2.3.tgz#403e1575a84c31cbd7f3c0ecd51b61bc25b7f808"
   integrity sha512-huSNb98KSG77Kl96CoPgCwom28aamuUsPpRmn/4s9L0RNbbHVSkp9E6HA4yOAykZCEuWcdNsRLbVVuAbt8rtIw==
+
+"@ngneat/falso@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-6.1.0.tgz#580717c9d13791ba8f708cce6021f6eaa7f1e787"
+  integrity sha512-eka5OxW65B1RphpLJ04Pd4PEkrmTab/Ut50K0OceAdM+O+MZA7YF9xo51uZgkxbhg8bJ5zEh5vucDRMSofcqsw==
+  dependencies:
+    seedrandom "3.0.5"
+    uuid "8.3.2"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -13664,6 +13667,11 @@ schema-utils@^3.0.0, schema-utils@^3.1.0, schema-utils@^3.1.1:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
+seedrandom@3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-3.0.5.tgz#54edc85c95222525b0c7a6f6b3543d8e0b3aa0a7"
+  integrity sha512-8OwmbklUNzwezjGInmZ+2clQmExQPvomqjL7LFqOYqtmuxRgQYqOD3mHaU+MvZn5FLUeVxVfQjwLZW/n/JFuqg==
+
 selenium-webdriver@4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.1.2.tgz#d463b4335632d2ea41a9e988e435a55dc41f5314"
@@ -15178,15 +15186,15 @@ uuid-browser@^3.1.0:
   resolved "https://registry.yarnpkg.com/uuid-browser/-/uuid-browser-3.1.0.tgz#0f05a40aef74f9e5951e20efbf44b11871e56410"
   integrity sha512-dsNgbLaTrd6l3MMxTtouOCFw4CBFc/3a+GgYA2YyrJvyQ1u6q4pcu3ktLoUZ/VN/Aw9WsauazbgsgdfVWgAKQg==
 
+uuid@8.3.2, uuid@^8.0.0, uuid@^8.3.1, uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
 uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
-
-uuid@^8.0.0, uuid@^8.3.1, uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"
