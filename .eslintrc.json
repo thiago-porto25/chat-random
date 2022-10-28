@@ -9,15 +9,19 @@
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
     "plugin:storybook/recommended",
+    "plugin:jsx-a11y/recommended",
     "next"
   ],
-  "plugins": ["testing-library", "jest-dom", "react", "@typescript-eslint"],
+  "plugins": [
+    "testing-library",
+    "jest-dom",
+    "react",
+    "@typescript-eslint",
+    "jsx-a11y"
+  ],
   "overrides": [
     {
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
       "extends": ["plugin:testing-library/react"]
     }
   ],
@@ -27,7 +31,9 @@
     "semi": ["error", "never"],
     "no-console": 1,
     "react/react-in-jsx-scope": "off",
-    "jsx-quotes": ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "testing-library/render-result-naming-convention": "off"
   },
   "globals": { "React": "writable" }
 }
