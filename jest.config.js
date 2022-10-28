@@ -21,5 +21,5 @@ const customJestConfig = {
 
 module.exports = async () => ({
   ...(await createJestConfig(customJestConfig)()),
-  transformIgnorePatterns: ["/node_modules/(?!(@thiagoporto)/)"],
+  transformIgnorePatterns: ["/node_modules/(?!(@thiagoporto|uuid)/)"],
 })
